@@ -35,6 +35,17 @@ Route::group([
             'update'  => 'semesters.update',
         ],
     ]);
+    //Semesters
+    Route::resource('batches', 'Dashboard\BatchController', [
+        'names' => [
+            'index'   => 'batches.index',
+            'create'  => 'batches.create',
+            'destroy' => 'batches.destroy',
+            'store'   => 'batches.store',
+            'edit'    => 'batches.edit',
+            'update'  => 'batches.update',
+        ],
+    ]);
     //Students
     Route::resource('students', 'Dashboard\StudentController', [
         'names' => [
