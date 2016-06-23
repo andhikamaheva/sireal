@@ -21,7 +21,7 @@ class Semester extends Model
     ];
     public    $timestamps = true;
 
-    function getStartAtAttribute($date)
+   /* function getStartAtAttribute($date)
     {
         setlocale(LC_TIME, 'id_ID.utf8');
         return Carbon::createFromFormat('Y-m-d H:i:s', $date)->formatLocalized('%d %B %Y');
@@ -31,7 +31,7 @@ class Semester extends Model
     {
         setlocale(LC_TIME, 'id_ID.utf8');
         return Carbon::createFromFormat('Y-m-d H:i:s', $date)->formatLocalized('%d %B %Y');
-    }
+    }*/
 
     protected $dates = ['deleted_at'];
 }
