@@ -82,14 +82,38 @@ Breadcrumbs::register('page', function ($breadcrumbs, $page) {
     $breadcrumbs->push($page->title, route('page', $page->id));
 });
 
-// Dashboard > List Semesterss
+// Dashboard > List Semesters
 Breadcrumbs::register('semesters.index', function ($breadcrumbs) {
     $breadcrumbs->parent('dashboard');
     $breadcrumbs->push('List Semesters', route('semesters.index'));
+});
+
+// Dashboard > Add Semester
+Breadcrumbs::register('semesters.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('dashboard');
+    $breadcrumbs->push('Add Semester', route('semesters.create'));
 });
 
 // Dashboard > Edit Semester
 Breadcrumbs::register('semesters.edit', function ($breadcrumbs, $id) {
     $breadcrumbs->parent('dashboard');
     $breadcrumbs->push('Edit Semester', route('semesters.edit', [ 'id' => $id ]));
+});
+
+// Dashboard > List Batches
+Breadcrumbs::register('batches.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('dashboard');
+    $breadcrumbs->push('List Batches', route('batches.index'));
+});
+
+// Dashboard > Add Semester
+Breadcrumbs::register('batches.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('dashboard');
+    $breadcrumbs->push('Add Batch', route('batches.create'));
+});
+
+// Dashboard > Edit Batches
+Breadcrumbs::register('batches.edit', function ($breadcrumbs, $id) {
+    $breadcrumbs->parent('dashboard');
+    $breadcrumbs->push('Edit Batch', route('batches.edit', [ 'id' => $id ]));
 });
