@@ -29,6 +29,35 @@
             </li>
 
             <li class="heading">
+                <h3 class="uppercase">Oprec</h3>
+            </li>
+            @if(Auth::user()->can('view-batch'))
+                <li class=" {{ Request::is('dashboard/batches/*') ||  Request::is('dashboard/batches') ? 'active open' : ''  }} ">
+                    <a href="javascript:;">
+                        <i class="fa fa-list-ol" aria-hidden="true"></i>
+                        <span class="title">Manage Batches</span>
+                        <span class=" {{ Request::is('dashboard/batches/*') ||  Request::is('dashboard/batches') ? 'arrow open selected' : 'arrow'  }} "></span>
+                    </a>
+                    <ul class="sub-menu">
+
+                        <li class="{{ Request::is('dashboard/batches') ? 'active' : '' }}">
+                            <a href="{{ route('batches.index')}}">
+                                List Batches</a>
+                        </li>
+
+                        @if(Auth::user()->can('add-batch'))
+                            <li class="{{ Request::is('dashboard/batches/create') ? 'active' : '' }}">
+                                <a href="{{ route('batches.create')}}">
+                                    Add Batche</a>
+                            </li>
+                        @endif
+
+                    </ul>
+                </li>
+            @endif
+
+
+            <li class="heading">
                 <h3 class="uppercase">Master</h3>
             </li>
 
@@ -49,7 +78,7 @@
                         @if(Auth::user()->can('add-semester'))
                             <li class="{{ Request::is('dashboard/semesters/create') ? 'active' : '' }}">
                                 <a href="{{ route('semesters.create')}}">
-                                    Add Semesters</a>
+                                    Add Semester</a>
                             </li>
                         @endif
 
@@ -74,7 +103,7 @@
                         @if(Auth::user()->can('add-student'))
                             <li class="{{ Request::is('dashboard/students/create') ? 'active' : '' }}">
                                 <a href="{{ route('students.create')}}">
-                                    Add Students</a>
+                                    Add Student</a>
                             </li>
                         @endif
 
@@ -100,7 +129,7 @@
                         @if(Auth::user()->can('add-subject'))
                             <li class="{{ Request::is('dashboard/subjects/create') ? 'active' : '' }}">
                                 <a href="{{ route('subjects.create')}}">
-                                    Create Subjects</a>
+                                    Create Subject</a>
                             </li>
                         @endif
 
