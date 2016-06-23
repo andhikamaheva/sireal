@@ -91,10 +91,11 @@
                                             {{$semester->name}}
                                         </td>
                                         <td>
-                                            {{$semester->start_at}}
+                                            <?php setlocale(LC_TIME, 'id_ID.utf8'); ?>
+                                            {{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $semester->start_at)->formatLocalized('%d %B %Y')}}
                                         </td>
                                         <td>
-                                            {{$semester->end_at}}
+                                            {{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $semester->end_at)->formatLocalized('%d %B %Y')}}
                                         </td>
                                         <td>
                                             {{statusTable($semester->status)}}
