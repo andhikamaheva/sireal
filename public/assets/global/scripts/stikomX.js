@@ -200,6 +200,56 @@ function deleteSemester(id, name) {
     });
 }
 
+function deleteBatch(id, name) {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    swal({
+        title: "Are you sure?",
+        text: "Delete " + name + " ?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, delete",
+        cancelButtonText: "No, cancel",
+        closeOnConfirm: false,
+        closeOnCancel: false
+    }, function (isConfirm) {
+        if (isConfirm) {
+            $.ajax({
+                type: "DELETE",
+                url: window.location.href + "/" + id,
+                success: function (response) {
+                    swal({
+                        title: "Delete Success!",
+                        type: "success",
+                        text: name + "'s has been deleted.",
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+                    $("#content").html(response);
+                },
+                error: function (response) {
+                    swal({
+                        title: "Error!",
+                        type: "error",
+                        text: response.responseJSON.message,
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+                }
+            });
+        }
+        else {
+            swal.close();
+        }
+        /*else {
+         swal("Cancelled", "Your tag status is safe :)", "error");   }*/
+    });
+}
+
 function createUser() {
     var roles = $('#roles').find("select[name='roles']").val();
 
