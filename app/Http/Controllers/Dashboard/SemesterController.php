@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Validator;
 use Carbon\Carbon;
 
+
 class SemesterController extends Controller
 {
     /**
@@ -29,7 +30,7 @@ class SemesterController extends Controller
     public function index()
     {
         //
-
+        
         if (Auth::user()->can('view-semester')) {
             $this->data['title']     = 'List Semesters ' . Setting::getSetting('site_name');
             $this->data['pageTitle'] = 'List Semesters';
@@ -82,7 +83,7 @@ class SemesterController extends Controller
                 'name'     => 'required|unique:semesters',
                 'start_at' => 'required|date',
                 'end_at'   => 'required|date',
-                'status'   => 'required|numeric',
+                'status'   => 'required|in:1,0',
             ];
             $messages  = [
                 'name.required'     => 'The Semester Name field is required',
@@ -92,7 +93,7 @@ class SemesterController extends Controller
                 'end_at.required'   => 'The End Date field is required',
                 'end_at.date'       => 'The End Date field not valid format',
                 'status.required'   => 'The Status is required',
-                'status.numeric'    => 'The Status not valid format',
+                'status.in'         => 'The Status value is not valid',
 
             ];
             $validator = Validator::make($data, $rules, $messages);
@@ -140,6 +141,25 @@ class SemesterController extends Controller
     public function edit($id)
     {
         //
+        if (Auth::user()->can('edit-semester')) {
+            $semester = Semester::find($id);
+            if ($semester) {
+                $this->data['title']     = 'Edit Semester ' . $semester->username . ' ' . Setting::getSetting('site_name');
+                $this->data['pageTitle'] = 'Edit Semester';
+                $this->data['pageDesc']  = 'Edit a Semester';
+                $this->data['semester']  = $semester;
+
+                return view('dashboard.semesters.edit', $this->data);
+            } else {
+                Flash::error('Oopss..something went wrong. Data is not found. Please contact andhika@stikom.edu');
+
+                return redirect('dashboard');
+            }
+        } else {
+            Flash::error("You don't have permissions to perform this action");
+
+            return redirect('dashboard');
+        }
     }
 
     /**
@@ -152,6 +172,61 @@ class SemesterController extends Controller
     public function update(Request $request, $id)
     {
         //
+        if (Auth::user()->can('edit-semester')) {
+            $semester = Semester::find($id);
+            if ($semester) {
+                $data = $request->all();
+
+                $rules     = [
+                    'name'     => 'required|unique:semesters,name,' . $semester->id,
+                    'start_at' => 'required|date',
+                    'end_at'   => 'required|date',
+                    'status'   => 'required|in:1,0'
+                ];
+                $messages  = [
+                    'name.required'     => 'The Name field is required',
+                    'name.unique'       => 'The Semester Name has already been taken',
+                    'start_at.required' => 'The Start Date field is required',
+                    'start_at.date'     => 'The Start Date is not valid format',
+                    'end_et.required'   => 'The End Date field is required',
+                    'end_et.date'       => 'The End Date is not valid format',
+                    'status.required'   => 'The Status field is required',
+                    'status.in'         => 'The Status value not valid',
+                ];
+                $validator = Validator::make($data, $rules, $messages);
+                if ($validator->fails()) {
+                    $errors = $validator->errors()->all();
+
+                    return redirect()->back()->with('errors', $errors)->withInput($data);
+                } else {
+                    $semester->name     = $data['name'];
+                    $semester->start_at = $data['start_at'];
+                    $semester->end_at   = $data['end_at'];
+                    $semester->status   = $data['status'];
+                    if ($semester->update()) {
+                        Flash::success("Data has been updated");
+
+                        return redirect()->route('semesters.index');
+
+                    } else {
+                        Flash::error('Oopss..something went wrong. Please contact andhika@stikom.edu');
+
+                        return redirect('dashboard');
+                    }
+
+                }
+
+            } else {
+                Flash::success("Oopss..something went wrong. Data is not found. Please contact andhika@stikom.edu");
+
+                return redirect()->route('dashboard');
+            }
+
+        } else {
+            Flash::error("You don't have permission to perform this action");
+
+            return redirect()->route('dashboard');
+        }
     }
 
     /**
@@ -163,7 +238,7 @@ class SemesterController extends Controller
     public function destroy(Request $request, $id)
     {
         //
-
+        $this->data['title']     = 'List Semesters ' . Setting::getSetting('site_name');
         $this->data['pageTitle'] = 'List Semesters';
         $this->data['pageDesc']  = 'List all Semesters';
         if (Auth::user()->can('delete-semester')) {
@@ -177,7 +252,19 @@ class SemesterController extends Controller
                             'message' => "Semester is active, please inactive first!",
                         ], 406);
                     } else {
-                        
+
+                        if ($semester->delete()) {
+                            $this->data['semesters'] = Semester::all();
+
+                            return view('dashboard.semesters.index', $this->data)->renderSections()['content'];
+                        } else {
+                            return response()->json([
+                                'code'    => '501',
+                                'status'  => 'Not Implemented',
+                                'message' => "Oopps..there is something went wrong, please contact andhika@stikom.edu",
+                            ], 501);
+
+                        }
 
                     }
                 } else {
@@ -193,34 +280,10 @@ class SemesterController extends Controller
 
                 return redirect()->route('dashboard');
             }
-
-
-            /*  if ($user && $user->id != Auth::user()->id) {
-                  if ($request->ajax()) {
-                      if ($user->delete()) {
-                          $this->data['semesters'] = Semester::all();
-
-                          return view('dashboard.semesters.index', $this->data)->renderSections()['content'];
-                      }
-                  }
-              } else {
-                  return response()->json([
-                      'code'    => '401',
-                      'status'  => 'failed',
-                      'message' => "User not found",
-                  ], 401);
-                  Flash::error("You don't have permission to perform this action");
-
-                  return redirect()->route('dashboard');
-              }*/
-        }/* else {
+        } else {
             Flash::error("You don't have permission to perform this action");
 
-            return response()->json([
-                'code'    => '401',
-                'status'  => 'failed',
-                'message' => "You don't have permission to perform this action",
-            ], 401);
-        }*/
+            return redirect()->route('dashboard');
+        }
     }
 }
