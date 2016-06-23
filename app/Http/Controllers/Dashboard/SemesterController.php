@@ -254,6 +254,7 @@ class SemesterController extends Controller
                     } else {
 
                         if ($semester->delete()) {
+                            
                             $this->data['semesters'] = Semester::all();
 
                             return view('dashboard.semesters.index', $this->data)->renderSections()['content'];
