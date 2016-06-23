@@ -18,7 +18,7 @@
                 <small> {{$pageDesc}} </small>
             </h3>
             <div class="page-bar">
-                {!! Breadcrumbs::render('semesters.create') !!}
+                {!! Breadcrumbs::render('batches.create') !!}
             </div>
             <!-- END PAGE HEADER-->
             <!-- BEGIN PAGE CONTENT-->
@@ -33,22 +33,39 @@
                             <div class="col-md-6">
                                 <div class="portlet-body form">
 
-                                    <form role="form" method="post" action="{{route('semesters.store')}}"
+                                    <form role="form" method="post" action="{{route('batches.store')}}"
                                           style="padding-top:10px;">
                                         @include('flash::message')
                                         @include('sweet::alert')
                                         {{csrf_field()}}
                                         <div class="form-body">
                                             <div class="form-group">
-                                                <label>Semester Name</label>
+                                                <label>Semester</label>
+                                                <div class="input-group">
+                                                    <script type="text/javascript">
+                                                        $(document).ready(function () {
+                                                            $(".semester").select2();
+                                                        });
+                                                    </script>
+
+                                                    <select class="form-control semester" name="semester">
+                                                        @foreach($semesters as $semester)
+                                                            <option value="{{$semester->id}}">{{$semester->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Batch Name</label>
                                                 <div class="input-group">
 									<span class="input-group-addon">
 									</span>
                                                     <input type="text" name="name" value="{{old('name')}}"
-                                                           class="form-control" placeholder="Semester Name">
+                                                           class="form-control" placeholder="Batch Name">
 
                                                 </div>
-                                                For example : Semester 16.1
+                                                For example : Batch 1-16.1
                                             </div>
 
                                             <div class="row">
@@ -60,7 +77,7 @@
                                                             <input type="text" class="form-control"
                                                                    placeholder="Start Date" name="start_at"
                                                                    value="{{old('start_at')}}" readonly>
-												<span class="input-grokup-addon">
+												<span class="input-group-addon">
 												to </span>
                                                             <input type="text" class="form-control"
                                                                    placeholder="End Date" name="end_at"
@@ -82,6 +99,70 @@
                                                     </select>
                                                 </div>
 
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Practice Test</strong></label>
+                                                        <div class="input-group input-large date-picker input-daterange"
+                                                             data-date="2012/12/12" data-date-format="yyyy/mm/dd">
+                                                            <input type="text" class="form-control"
+                                                                   placeholder="Start Date" name="practice_start_at"
+                                                                   value="{{old('practice_start_at')}}" readonly>
+												<span class="input-group-addon">
+												to </span>
+                                                            <input type="text" class="form-control"
+                                                                   placeholder="End Date" name="practice_end_at"
+                                                                   value="{{old('practice_end_at')}}" readonly>
+                                                        </div>
+                                                        <!-- /input-group -->
+											<span class="help-block">
+										</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>TPA</strong></label>
+                                                        <div class="input-group input-large date-picker input-daterange"
+                                                             data-date="2012/12/12" data-date-format="yyyy/mm/dd">
+                                                            <input type="text" class="form-control"
+                                                                   placeholder="Start Date" name="tpa_start_at"
+                                                                   value="{{old('tpa_start_at')}}" readonly>
+												<span class="input-group-addon">
+												to </span>
+                                                            <input type="text" class="form-control"
+                                                                   placeholder="End Date" name="tpa_end_at"
+                                                                   value="{{old('tpa_end_at')}}" readonly>
+                                                        </div>
+                                                        <!-- /input-group -->
+											<span class="help-block">
+										</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Interview</strong></label>
+                                                        <div class="input-group input-large date-picker input-daterange"
+                                                             data-date="2012/12/12" data-date-format="yyyy/mm/dd">
+                                                            <input type="text" class="form-control"
+                                                                   placeholder="Start Date" name="interview_start_at"
+                                                                   value="{{old('interview_start_at')}}" readonly>
+												<span class="input-group-addon">
+												to </span>
+                                                            <input type="text" class="form-control"
+                                                                   placeholder="End Date" name="interview_end_at"
+                                                                   value="{{old('interview_end_at')}}" readonly>
+                                                        </div>
+                                                        <!-- /input-group -->
+											<span class="help-block">
+										</span>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-actions"
