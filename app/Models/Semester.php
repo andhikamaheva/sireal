@@ -5,10 +5,13 @@ namespace App\Models;
 use Carbon\Carbon;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Semester extends Model
 {
     //
+    use SoftDeletes;
+    
     protected $table      = 'semesters';
     protected $primaryKey = 'id';
     protected $fillable   = [ 'name',
@@ -30,4 +33,5 @@ class Semester extends Model
         return Carbon::createFromFormat('Y-m-d H:i:s', $date)->formatLocalized('%d %B %Y');
     }
 
+    protected $dates = ['deleted_at'];
 }
