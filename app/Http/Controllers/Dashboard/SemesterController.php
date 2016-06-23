@@ -29,6 +29,7 @@ class SemesterController extends Controller
     public function index()
     {
         //
+
         if (Auth::user()->can('view-semester')) {
             $this->data['title']     = 'List Semesters ' . Setting::getSetting('site_name');
             $this->data['pageTitle'] = 'List Semesters';
@@ -36,6 +37,7 @@ class SemesterController extends Controller
             $this->data['semesters'] = Semester::all();
 
             return view('dashboard.semesters.index', $this->data);
+
         } else {
             Flash::error("You don't have permissions to perform this action!");
 
@@ -158,8 +160,67 @@ class SemesterController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         //
+
+        $this->data['pageTitle'] = 'List Semesters';
+        $this->data['pageDesc']  = 'List all Semesters';
+        if (Auth::user()->can('delete-semester')) {
+            if ($request->ajax()) {
+                $semester = Semester::find($id);
+                if ($semester) {
+                    if ($semester->status == 1) {
+                        return response()->json([
+                            'code'    => '406',
+                            'status'  => 'Not Acceptable',
+                            'message' => "Semester is active, please inactive first!",
+                        ], 406);
+                    } else {
+                        
+
+                    }
+                } else {
+                    return response()->json([
+                        'code'    => '204',
+                        'status'  => 'No Content',
+                        'message' => "Semester not exist",
+                    ], 204);
+                }
+
+            } else {
+                Flash::error("You don't have permission to perform this action");
+
+                return redirect()->route('dashboard');
+            }
+
+
+            /*  if ($user && $user->id != Auth::user()->id) {
+                  if ($request->ajax()) {
+                      if ($user->delete()) {
+                          $this->data['semesters'] = Semester::all();
+
+                          return view('dashboard.semesters.index', $this->data)->renderSections()['content'];
+                      }
+                  }
+              } else {
+                  return response()->json([
+                      'code'    => '401',
+                      'status'  => 'failed',
+                      'message' => "User not found",
+                  ], 401);
+                  Flash::error("You don't have permission to perform this action");
+
+                  return redirect()->route('dashboard');
+              }*/
+        }/* else {
+            Flash::error("You don't have permission to perform this action");
+
+            return response()->json([
+                'code'    => '401',
+                'status'  => 'failed',
+                'message' => "You don't have permission to perform this action",
+            ], 401);
+        }*/
     }
 }
