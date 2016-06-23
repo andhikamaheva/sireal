@@ -54,7 +54,10 @@
                                     </div>
                                 </div>
                             </div>
+
+                            @include('sweet::alert')
                             @include('flash::message')
+
                             <table class="table table-striped table-bordered table-hover" id="sample_1">
                                 <thead>
                                 <tr>
@@ -102,7 +105,7 @@
                                                         class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 
                                             <a class="btn red"
-                                               onclick="deleteSubject('{{$semester->id}}',' {{$semester->name}}')"><i
+                                               onclick="deleteSemester('{{$semester->id}}',' {{$semester->name}}')"><i
                                                         class="fa fa-trash-o" aria-hidden="true"></i></a>
 
                                         </td>
