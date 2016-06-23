@@ -146,8 +146,25 @@ class UserController extends Controller
     public function edit($id)
     {
         //
-        if (Auth::user()->can('edit-user')) {
-            $user = User::find($id);
+        $user = User::find($id);
+        if (Auth::user()->id == $user->id) {
+            if ($user) {
+                $this->data['title']     = 'Edit User ' . $user->username . ' ' . Setting::getSetting('site_name');
+                $this->data['pageTitle'] = 'Edit User';
+                $this->data['pageDesc']  = 'Edit a User';
+                $this->data['user']      = $user;
+                $this->data['roles']     = Role::all();
+                $this->data['roleUser']  = RoleUser::where('user_id', '=', $user->id)->get();
+
+                return view('dashboard.users.edit', $this->data);
+            } else {
+                Flash::error('Oopss..something went wrong. Data is not found. Please contact andhika@stikom.edu');
+
+                return redirect('dashboard');
+            }
+
+        } elseif (Auth::user()->can('edit-user')) {
+
             if ($user) {
                 $this->data['title']     = 'Edit User ' . $user->username . ' ' . Setting::getSetting('site_name');
                 $this->data['pageTitle'] = 'Edit User';
@@ -179,8 +196,120 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
-        if (Auth::user()->can('edit-user')) {
-            $user = User::find($id);
+        $user = User::find($id);
+        if (Auth::user()->id == $user->id) {
+            if ($user) {
+                $roleUser = RoleUser::where('user_id', '=', $user->id)->get();
+                if (Auth::user()->can('edit-role')) {
+                    $rules     = [
+                        'name'  => 'required|unique:users,name,' . $user->id,
+                        'email' => 'required|email|unique:users,email,' . $user->id,
+                        'roles' => 'required',
+                    ];
+                    $messages  = [
+                        'name.required'  => 'User name is required',
+                        'name.unique'    => 'The User Name has already been taken',
+                        'email.required' => 'Email is required',
+                        'email.email'    => 'Email is not valid',
+                        'email.unique'   => 'The User Email has already been taken',
+                        'roles.required' => 'User roles is required',
+                    ];
+                    $data      = $request->all();
+                    $validator = Validator::make($data, $rules, $messages);
+                    if ($validator->fails()) {
+                        $errors = $validator->errors()->all();
+
+                        return redirect()->back()->with('errors', $errors)->withInput($data);
+                    } else {
+                        if ($data['user_password'] != "" || $data['user_password'] != null) {
+                            $user->name          = $data['name'];
+                            $user->email         = $data['email'];
+                            $user->user_password = $data['user_password'];
+                            if ($user->update()) {
+                                $roleUser = RoleUser::where('user_id', '=', $id)->get();
+                                $user->detachRoles($roleUser->pluck('role_id'));
+                                $user->attachRoles($data['roles']);
+                                Flash::success("Data has been updated");
+
+                                return redirect()->route('users.index');
+                            } else {
+                            }
+                        } else {
+                            $user->name  = $data['name'];
+                            $user->email = $data['email'];
+
+                            if ($user->update()) {
+                                $roleUser = RoleUser::where('user_id', '=', $id)->get();
+                                $user->detachRoles($roleUser->pluck('role_id'));
+                                $user->attachRoles($data['roles']);
+                                Flash::success("Data has been updated");
+
+                                return redirect()->route('users.index');
+                            } else {
+                                Flash::error("Oopss..something went wrong. Data is not found. Please contact andhika@stikom.edu");
+
+                                return redirect()->back();
+                            }
+                        }
+                    }
+                } else {
+                    $rules     = [
+                        'name'  => 'required|unique:users,name,' . $user->id,
+                        'email' => 'required|email|unique:users,email,' . $user->id,
+
+                    ];
+                    $messages  = [
+                        'name.required'  => 'User name is required',
+                        'name.unique'    => 'The User Name has already been taken',
+                        'email.required' => 'Email is required',
+                        'email.email'    => 'Email is not valid',
+                        'email.unique'   => 'The User Email has already been taken',
+
+                    ];
+                    $data      = $request->all();
+                    $validator = Validator::make($data, $rules, $messages);
+                    if ($validator->fails()) {
+                        $errors = $validator->errors()->all();
+
+                        return redirect()->back()->with('errors', $errors)->withInput($data);
+                    } else {
+                        if ($data['user_password'] != "" || $data['user_password'] != null) {
+                            $user->name          = $data['name'];
+                            $user->email         = $data['email'];
+                            $user->user_password = $data['user_password'];
+                            if ($user->update()) {
+
+                                Flash::success("Data has been updated");
+
+                                return redirect()->route('dashboard');
+                            } else {
+                            }
+                        } else {
+                            $user->name  = $data['name'];
+                            $user->email = $data['email'];
+
+                            if ($user->update()) {
+
+                                Flash::success("Data has been updated");
+
+                                return redirect()->route('dashboard');
+                            } else {
+                                Flash::error("Oopss..something went wrong. Data is not found. Please contact andhika@stikom.edu");
+
+                                return redirect()->back();
+                            }
+                        }
+                    }
+                }
+
+
+            } else {
+                Flash::success("Oopss..something went wrong. Data is not found. Please contact andhika@stikom.edu");
+
+                return redirect()->route('dashboard');
+            }
+        } elseif (Auth::user()->can('edit-user')) {
+
 
             if ($user) {
                 $roleUser  = RoleUser::where('user_id', '=', $user->id)->get();
