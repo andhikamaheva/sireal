@@ -11,7 +11,7 @@ class Semester extends Model
 {
     //
     use SoftDeletes;
-    
+
     protected $table      = 'semesters';
     protected $primaryKey = 'id';
     protected $fillable   = [ 'name',
@@ -21,17 +21,22 @@ class Semester extends Model
     ];
     public    $timestamps = true;
 
-   /* function getStartAtAttribute($date)
+    /* function getStartAtAttribute($date)
+     {
+         setlocale(LC_TIME, 'id_ID.utf8');
+         return Carbon::createFromFormat('Y-m-d H:i:s', $date)->formatLocalized('%d %B %Y');
+     }
+
+     function getEndAtAttribute($date)
+     {
+         setlocale(LC_TIME, 'id_ID.utf8');
+         return Carbon::createFromFormat('Y-m-d H:i:s', $date)->formatLocalized('%d %B %Y');
+     }*/
+
+    protected $dates = [ 'deleted_at' ];
+
+    public function batches()
     {
-        setlocale(LC_TIME, 'id_ID.utf8');
-        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->formatLocalized('%d %B %Y');
+        return $this->hasMany('App\Models\Batch');
     }
-
-    function getEndAtAttribute($date)
-    {
-        setlocale(LC_TIME, 'id_ID.utf8');
-        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->formatLocalized('%d %B %Y');
-    }*/
-
-    protected $dates = ['deleted_at'];
 }
