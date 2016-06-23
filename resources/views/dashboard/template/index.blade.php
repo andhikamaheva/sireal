@@ -18,7 +18,7 @@
 
 <script src="{{asset('assets/global/plugins/sweet-alert/dist/sweetalert.min.js')}}"></script>
 <link rel="stylesheet" type="text/css" href="{{asset('assets/global/plugins/sweet-alert/dist/sweetalert.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('assets/global/plugins/sweet-alert/themes/twitter/twitter.css')}}">
+{{--<link rel="stylesheet" type="text/css" href="{{asset('assets/global/plugins/sweet-alert/themes/twitter/twitter.css')}}">--}}
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>
 <link href="{{asset('assets/global/plugins/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css"/>
 <link href="{{asset('assets/global/plugins/simple-line-icons/simple-line-icons.min.css')}}" rel="stylesheet" type="text/css"/>
