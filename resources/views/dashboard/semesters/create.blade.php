@@ -60,7 +60,7 @@
                                                             <input type="text" class="form-control"
                                                                    placeholder="Start Date" name="start_at"
                                                                    value="{{old('start_at')}}" readonly>
-												<span class="input-grokup-addon">
+												<span class="input-group-addon">
 												to </span>
                                                             <input type="text" class="form-control"
                                                                    placeholder="End Date" name="end_at"
