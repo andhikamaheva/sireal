@@ -24,4 +24,9 @@ class Batch extends Model
     {
         return $this->belongsTo('App\Models\Semester', 'semester_id');
     }
+
+    public function batchactivities()
+    {
+        return $this->hasMany('App\Models\BatchActivity');
+    }
 }
