@@ -18,7 +18,7 @@
                 <small> {{$pageDesc}} </small>
             </h3>
             <div class="page-bar">
-                {!! Breadcrumbs::render('subjects.create') !!}
+                {!! Breadcrumbs::render('semesters.create') !!}
             </div>
             <!-- END PAGE HEADER-->
             <!-- BEGIN PAGE CONTENT-->
