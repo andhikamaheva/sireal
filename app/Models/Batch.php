@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
 
 class Batch extends Model
 {
@@ -25,6 +26,7 @@ class Batch extends Model
         return $this->belongsTo('App\Models\Semester', 'semester_id');
     }
 
+    
     public function batchactivities()
     {
         return $this->hasMany('App\Models\BatchActivity');

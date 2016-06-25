@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -14,7 +14,8 @@ class BatchActivity extends Model
     protected $fillable   = [ 'batch_id',
         'name',
         'start_at',
-        'end_at'
+        'end_at',
+        'type'
     ];
     public    $timestamps = true;
     protected $dates      = [ 'deleted_at' ];

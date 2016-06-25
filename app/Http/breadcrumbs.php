@@ -117,3 +117,9 @@ Breadcrumbs::register('batches.edit', function ($breadcrumbs, $id) {
     $breadcrumbs->parent('dashboard');
     $breadcrumbs->push('Edit Batch', route('batches.edit', [ 'id' => $id ]));
 });
+
+// Dashboard > Administrations
+Breadcrumbs::register('administrations.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('dashboard');
+    $breadcrumbs->push('Administration', route('administrations.index'));
+});

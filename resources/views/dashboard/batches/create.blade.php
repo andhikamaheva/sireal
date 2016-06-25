@@ -73,7 +73,7 @@
                                                     <div class="form-group">
                                                         <label>Start dan End Date</label>
                                                         <div class="input-group input-large date-picker input-daterange"
-                                                             data-date="2012/12/12" data-date-format="yyyy/mm/dd">
+                                                             data-date="2012-12-12" data-date-format="yyyy-mm-dd">
                                                             <input type="text" class="form-control"
                                                                    placeholder="Start Date" name="start_at"
                                                                    value="{{old('start_at')}}" readonly>
@@ -104,9 +104,30 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="form-group">
+                                                        <label><strong>Registration</strong></label>
+                                                        <div class="input-group input-large date-picker input-daterange"
+                                                             data-date="2012-12-12" data-date-format="yyyy-mm-dd">
+                                                            <input type="text" class="form-control"
+                                                                   placeholder="Start Date" name="regist_start_at"
+                                                                   value="{{old('regist_start_at')}}" readonly>
+												<span class="input-group-addon">
+												to </span>
+                                                            <input type="text" class="form-control"
+                                                                   placeholder="End Date" name="regist_end_at"
+                                                                   value="{{old('regist_end_at')}}" readonly>
+                                                        </div>
+                                                        <!-- /input-group -->
+											<span class="help-block">
+										</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
                                                         <label><strong>Practice Test</strong></label>
                                                         <div class="input-group input-large date-picker input-daterange"
-                                                             data-date="2012/12/12" data-date-format="yyyy/mm/dd">
+                                                             data-date="2012-12-12" data-date-format="yyyy-mm-dd">
                                                             <input type="text" class="form-control"
                                                                    placeholder="Start Date" name="practice_start_at"
                                                                    value="{{old('practice_start_at')}}" readonly>
@@ -127,7 +148,7 @@
                                                     <div class="form-group">
                                                         <label><strong>TPA</strong></label>
                                                         <div class="input-group input-large date-picker input-daterange"
-                                                             data-date="2012/12/12" data-date-format="yyyy/mm/dd">
+                                                             data-date="2012-12-12" data-date-format="yyyy-mm-dd">
                                                             <input type="text" class="form-control"
                                                                    placeholder="Start Date" name="tpa_start_at"
                                                                    value="{{old('tpa_start_at')}}" readonly>
@@ -148,7 +169,7 @@
                                                     <div class="form-group">
                                                         <label><strong>Interview</strong></label>
                                                         <div class="input-group input-large date-picker input-daterange"
-                                                             data-date="2012/12/12" data-date-format="yyyy/mm/dd">
+                                                             data-date="2012-12-12" data-date-format="yyyy-mm-dd">
                                                             <input type="text" class="form-control"
                                                                    placeholder="Start Date" name="interview_start_at"
                                                                    value="{{old('interview_start_at')}}" readonly>
