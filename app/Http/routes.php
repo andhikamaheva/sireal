@@ -16,6 +16,20 @@ Route::group([ 'middleware' => 'guest' ], function () {
     Route::post('login/auth', 'LoginController@auth');
 });
 
+Route::group([ 'middleware' => 'guest',
+               'prefix'     => 'pendaftaran'
+], function () {
+    Route::resource('/', 'RegistrationController', [
+        'names' => [
+            'index'   => 'registration.index',
+            'create'  => 'registration.create',
+            'destroy' => 'registration.destroy',
+            'store'   => 'registration.store',
+            'edit'    => 'registration.edit',
+            'update'  => 'registration.update',
+        ],
+    ]);
+});
 
 Route::group([
     'middleware' => 'auth',
@@ -25,6 +39,21 @@ Route::group([
     //Dashboard
     Route::resource('/', 'Dashboard\DashboardController', [ 'names' => [ 'index' => 'dashboard' ] ]);
     //Semesters
+
+    //Scores
+    Route::group([ 'prefix' => 'scores' ], function () {
+        Route::resource('administrations', 'Dashboard\AdministrationController', [
+            'names' => [
+                'index'   => 'administrations.index',
+                'create'  => 'administrations.create',
+                'destroy' => 'administrations.destroy',
+                'store'   => 'administrations.store',
+                'edit'    => 'administrations.edit',
+                'update'  => 'administrations.update',
+            ]
+        ]);
+    });
+
     Route::resource('semesters', 'Dashboard\SemesterController', [
         'names' => [
             'index'   => 'semesters.index',

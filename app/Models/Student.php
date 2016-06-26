@@ -14,7 +14,18 @@ use Illuminate\Database\Eloquent\Model;
 class Student extends Model
 {
     //
-    protected $table    = 'students';
-    protected $fillable = ['nim','name','nickname','phone','email'];
-    public $timestamps  = true;
+    protected $table      = 'students';
+    protected $primaryKey = 'id';
+    protected $fillable   = [ 'nim',
+        'name',
+        'nickname',
+        'phone',
+        'email'
+    ];
+    public    $timestamps = true;
+
+    public function oprecs()
+    {
+        return $this->hasMany('App\Models\Oprec');
+    }
 }

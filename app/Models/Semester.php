@@ -39,4 +39,10 @@ class Semester extends Model
     {
         return $this->hasMany('App\Models\Batch');
     }
+
+    public function subjects()
+    {
+        return $this->belongsToMany('App\Models\Subject', 'semester_subjects',
+            'semester_id', 'subject_id');
+    }
 }

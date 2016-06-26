@@ -18,7 +18,7 @@
                 <small> {{$pageDesc}} </small>
             </h3>
             <div class="page-bar">
-                {!! Breadcrumbs::render('semesters.edit', $semester->id) !!}
+                {!! Breadcrumbs::render('batches.edit', $batch->id) !!}
             </div>
             <!-- END PAGE HEADER-->
             <!-- BEGIN PAGE CONTENT-->
@@ -34,24 +34,42 @@
                                 <div class="portlet-body form">
 
                                     <form role="form" method="post"
-                                          action="{{route('semesters.update', ['id' => $semester->id])}}"
+                                          action="{{route('batches.update', ['id' => $batch->id])}}"
                                           style="padding-top:10px;">
                                         <input type="hidden" name="_method" value="PATCH">
                                         @include('flash::message')
                                         @include('sweet::alert')
                                         {{csrf_field()}}
+
                                         <div class="form-body">
                                             <div class="form-group">
-                                                <label>Semester Name</label>
+                                                <label>Semester</label>
+                                                <div class="input-group">
+                                                    <script type="text/javascript">
+                                                        $(document).ready(function () {
+                                                            $(".semester").select2();
+                                                        });
+                                                    </script>
+
+                                                    <select class="form-control semester" name="semester">
+                                                        @foreach($semesters as $semester)
+                                                            <option value="{{$semester->id}}" {{$semester->id == $batch->id ? 'selected' : ''}}>{{$semester->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Batch Name</label>
                                                 <div class="input-group">
 									<span class="input-group-addon">
 									</span>
                                                     <input type="text" name="name"
-                                                           value="{{$semester->name or old('name')}}"
-                                                           class="form-control" placeholder="Semester Name">
+                                                           value="{{$batch->name or old('name')}}"
+                                                           class="form-control" placeholder="Batch Name">
 
                                                 </div>
-                                                For example : Semester 16.1
+                                                For example : Batch 1-16.1
                                             </div>
 
                                             <div class="row">
@@ -59,17 +77,16 @@
                                                     <div class="form-group">
                                                         <label>Start dan End Date</label>
                                                         <div class="input-group input-large date-picker input-daterange"
-                                                             data-date="2012/12/12" data-date-format="yyyy/mm/dd">
+                                                             data-date="2012-12-12" data-date-format="yyyy-mm-dd">
                                                             <input type="text" class="form-control"
                                                                    placeholder="Start Date" name="start_at"
-                                                                   value="{{$semester->start_at or old('start_at')}}"
+                                                                   value="{{formatDateString($batch->start_at)}}"
                                                                    readonly>
-												<span class="input-grokup-addon">
+												<span class="input-group-addon">
 												to </span>
                                                             <input type="text" class="form-control"
                                                                    placeholder="End Date" name="end_at"
-                                                                   value="{{$semester->end_at or old('end_at')}}"
-                                                                   readonly>
+                                                                   value="{{formatDateString($batch->end_at)}}" readonly>
                                                         </div>
                                                         <!-- /input-group -->
 											<span class="help-block">
@@ -82,15 +99,109 @@
                                                 <div class="input-group">
 
                                                     <select class="form-control" name="status">
-                                                        <option value="1" {{$semester->status==1 ? 'active' : ''}}>
+                                                        <option value="1" {{$batch->status == 1 ? 'selected' : ''}}>
                                                             Active
                                                         </option>
-                                                        <option value="0" {{$semester->status==0 ? 'active' : ''}}>
+                                                        <option value="0" {{$batch->status == 0 ? 'selected' : ''}}>
                                                             Deactive
                                                         </option>
                                                     </select>
                                                 </div>
 
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Registration</strong></label>
+                                                        <div class="input-group input-large date-picker input-daterange"
+                                                             data-date="2012-12-12" data-date-format="yyyy-mm-dd">
+                                                            <input type="text" class="form-control"
+                                                                   placeholder="Start Date" name="regist_start_at"
+
+                                                                   value="{{formatDateString($batch->batchactivities[0]->start_at)}}"
+                                                                   readonly>
+												<span class="input-group-addon">
+												to </span>
+                                                            <input type="text" class="form-control"
+                                                                   placeholder="End Date" name="regist_end_at"
+                                                                   value="{{formatDateString($batch->batchactivities[0]->end_at)}}"
+                                                                   readonly>
+                                                        </div>
+                                                        <!-- /input-group -->
+											<span class="help-block">
+										</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Practice Test</strong></label>
+                                                        <div class="input-group input-large date-picker input-daterange"
+                                                             data-date="2012-12-12" data-date-format="yyyy-mm-dd">
+                                                            <input type="text" class="form-control"
+                                                                   placeholder="Start Date" name="practice_start_at"
+                                                                   value="{{ formatDateString($batch->batchactivities[1]->start_at)}}"
+                                                                   readonly>
+												<span class="input-group-addon">
+												to </span>
+                                                            <input type="text" class="form-control"
+                                                                   placeholder="End Date" name="practice_end_at"
+                                                                   value="{{formatDateString($batch->batchactivities[1]->end_at)}}"
+                                                                   readonly>
+                                                        </div>
+                                                        <!-- /input-group -->
+											<span class="help-block">
+										</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>TPA</strong></label>
+                                                        <div class="input-group input-large date-picker input-daterange"
+                                                             data-date="2012-12-12" data-date-format="yyyy-mm-dd">
+                                                            <input type="text" class="form-control"
+                                                                   placeholder="Start Date" name="tpa_start_at"
+                                                                   value="{{formatDateString($batch->batchactivities[2]->start_at)}}"
+                                                                   readonly>
+												<span class="input-group-addon">
+												to </span>
+                                                            <input type="text" class="form-control"
+                                                                   placeholder="End Date" name="tpa_end_at"
+                                                                   value="{{formatDateString($batch->batchactivities[2]->end_at)}}"
+                                                                   readonly>
+                                                        </div>
+                                                        <!-- /input-group -->
+											<span class="help-block">
+										</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label><strong>Interview</strong></label>
+                                                        <div class="input-group input-large date-picker input-daterange"
+                                                             data-date="2012-12-12" data-date-format="yyyy-mm-dd">
+                                                            <input type="text" class="form-control"
+                                                                   placeholder="Start Date" name="interview_start_at"
+                                                                   value="{{formatDateString($batch->batchactivities[3]->start_at)}}"
+                                                                   readonly>
+												<span class="input-group-addon">
+												to </span>
+                                                            <input type="text" class="form-control"
+                                                                   placeholder="End Date" name="interview_end_at"
+                                                                   value="{{formatDateString($batch->batchactivities[3]->end_at)}}"
+                                                                   readonly>
+                                                        </div>
+                                                        <!-- /input-group -->
+											<span class="help-block">
+										</span>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-actions"

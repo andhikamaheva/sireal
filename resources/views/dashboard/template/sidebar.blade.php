@@ -31,6 +31,79 @@
             <li class="heading">
                 <h3 class="uppercase">Oprec</h3>
             </li>
+
+            @if(Auth::user()->can('scores'))
+                <li class=" {{ Request::is('dashboard/scores/*') ||  Request::is('dashboard/scores') ? 'active open' : ''  }} ">
+                    <a href="javascript:;">
+                        <i class="fa fa-sort-numeric-desc" aria-hidden="true"></i>
+                        <span class="title">Scores</span>
+                        <span class=" {{ Request::is('dashboard/scores/*') ||  Request::is('dashboard/scores') ? 'arrow open selected' : 'arrow'  }} "></span>
+                    </a>
+                    <ul class="sub-menu">
+
+                        @if(Auth::user()->can('scores-administration'))
+                            <li class="{{ Request::is('dashboard/scores/administration') ? 'active' : '' }}">
+                                <a href="{{ route('administrations.index')}}">
+                                    Administration</a>
+                            </li>
+                        @endif
+
+                        @if(Auth::user()->can('scores-tpa'))
+                            <li class="{{ Request::is('dashboard/scores/tpa') ? 'active' : '' }}">
+                                <a href="{{ route('batches.index')}}">
+                                    TPA</a>
+                            </li>
+                        @endif
+
+                        @if(Auth::user()->can('scores-audition'))
+                            <li class="{{ Request::is('dashboard/scores/audition') ? 'active' : '' }}">
+                                <a href="{{ route('batches.create')}}">
+                                    Audition</a>
+                            </li>
+                        @endif
+
+                        @if(Auth::user()->can('scores-interview'))
+                            <li class="{{ Request::is('dashboard/scores/interview') ? 'active' : '' }}">
+                                <a href="{{ route('batches.create')}}">
+                                    Interview</a>
+                            </li>
+                        @endif
+
+
+                    </ul>
+                </li>
+            @endif
+
+            @if(Auth::user()->can('scores'))
+                <li class=" {{ Request::is('dashboard/scores/*') ||  Request::is('dashboard/scores') ? 'active open' : ''  }} ">
+                    <a href="javascript:;">
+                        <i class="fa fa-files-o" aria-hidden="true"></i>
+                        <span class="title">Report</span>
+                        <span class=" {{ Request::is('dashboard/scores/*') ||  Request::is('dashboard/scores') ? 'arrow open selected' : 'arrow'  }} "></span>
+                    </a>
+                    <ul class="sub-menu">
+
+
+                        @if(Auth::user()->can('scores-audition'))
+                            <li class="{{ Request::is('dashboard/scores/audition') ? 'active' : '' }}">
+                                <a href="{{ route('batches.create')}}">
+                                    Final Report</a>
+                            </li>
+                        @endif
+
+                        @if(Auth::user()->can('scores-interview'))
+                            <li class="{{ Request::is('dashboard/scores/interview') ? 'active' : '' }}">
+                                <a href="{{ route('batches.create')}}">
+                                    Attendance Report</a>
+                            </li>
+                        @endif
+
+
+                    </ul>
+                </li>
+            @endif
+
+
             @if(Auth::user()->can('view-batch'))
                 <li class=" {{ Request::is('dashboard/batches/*') ||  Request::is('dashboard/batches') ? 'active open' : ''  }} ">
                     <a href="javascript:;">
@@ -52,11 +125,37 @@
                             </li>
                         @endif
 
+
                     </ul>
                 </li>
             @endif
+            {{-- @if(Auth::user()->can('view-batch'))
+                 <li class=" {{ Request::is('dashboard/batches/*') ||  Request::is('dashboard/batches') ? 'active open' : ''  }} ">
+                     <a href="javascript:;">
+                         <i class="fa fa-list-ol" aria-hidden="true"></i>
+                         <span class="title">Manage Oprec</span>
+                         <span class=" {{ Request::is('dashboard/batches/*') ||  Request::is('dashboard/batches') ? 'arrow open selected' : 'arrow'  }} "></span>
+                     </a>
+                     <ul class="sub-menu">
+
+                         <li class="{{ Request::is('dashboard/batches') ? 'active' : '' }}">
+                             <a href="{{ route('batches.index')}}">
+                                 List Batches</a>
+                         </li>
+
+                         @if(Auth::user()->can('add-batch'))
+                             <li class="{{ Request::is('dashboard/batches/create') ? 'active' : '' }}">
+                                 <a href="{{ route('batches.create')}}">
+                                     Add Batche</a>
+                             </li>
+                         @endif
+
+                     </ul>
+                 </li>
+             @endif
 
 
+ --}}
             <li class="heading">
                 <h3 class="uppercase">Master</h3>
             </li>

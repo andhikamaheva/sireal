@@ -18,7 +18,12 @@ class User extends Authenticatable
 
     protected $table      = 'users';
     protected $primaryKey = 'id';
-    protected $fillable   = ['name', 'email', 'username', 'user_password', 'remember_token'];
+    protected $fillable   = [ 'name',
+        'email',
+        'username',
+        'user_password',
+        'remember_token'
+    ];
 
 
     /**
@@ -42,11 +47,18 @@ class User extends Authenticatable
     {
         return $this->user_password;
     }
+
     /*
     public function getAuthIdentifier()
      {
       return $this->Email;
       }
     */
-    protected $dates = ['deleted_at'];
+
+    public function subjects()
+    {
+        return $this->belongsToMany('App\Models\Subject');
+    }
+
+    protected $dates = [ 'deleted_at' ];
 }
