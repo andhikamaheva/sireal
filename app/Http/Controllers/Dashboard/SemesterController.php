@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Models\Semester;
 use App\Models\Setting;
+use App\Models\Subject;
+use App\Models\SemesterSubject;
 use Flash;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Support\Facades\Auth;
@@ -30,7 +32,7 @@ class SemesterController extends Controller
     public function index()
     {
         //
-        
+
         if (Auth::user()->can('view-semester')) {
             $this->data['title']     = 'List Semesters ' . Setting::getSetting('site_name');
             $this->data['pageTitle'] = 'List Semesters';
@@ -58,6 +60,7 @@ class SemesterController extends Controller
             $this->data['title']     = 'Create Semester ' . Setting::getSetting('site_name');
             $this->data['pageTitle'] = 'Create Semester';
             $this->data['pageDesc']  = 'Create a new Semester';
+            $this->data['subjects']  = Subject::all();
 
             return view('dashboard.semesters.create', $this->data);
         } else {
@@ -84,6 +87,7 @@ class SemesterController extends Controller
                 'start_at' => 'required|date',
                 'end_at'   => 'required|date',
                 'status'   => 'required|in:1,0',
+                'subjects' => 'required',
             ];
             $messages  = [
                 'name.required'     => 'The Semester Name field is required',
@@ -94,6 +98,7 @@ class SemesterController extends Controller
                 'end_at.date'       => 'The End Date field not valid format',
                 'status.required'   => 'The Status is required',
                 'status.in'         => 'The Status value is not valid',
+                'subjects.required' => 'The Subjects field is required',
 
             ];
             $validator = Validator::make($data, $rules, $messages);
@@ -104,10 +109,12 @@ class SemesterController extends Controller
             } else {
                 $semester           = new Semester();
                 $semester->name     = $data['name'];
-                $semester->start_at = $data['start_at'];//Carbon::createFromDate('y-m-d', );
-                $semester->end_at   = $data['end_at'];//Carbon::createFromDate('y-m-d', $data['end_at']);
+                $semester->start_at = $data['start_at'];
+                $semester->end_at   = $data['end_at'];
                 $semester->status   = $data['status'];
                 if ($semester->save()) {
+                    $semester->subjects()->attach($data['subjects']);
+
                     Flash::success("Data Semester has been saved!");
 
                     return redirect()->route('semesters.index');
@@ -144,10 +151,13 @@ class SemesterController extends Controller
         if (Auth::user()->can('edit-semester')) {
             $semester = Semester::find($id);
             if ($semester) {
-                $this->data['title']     = 'Edit Semester ' . $semester->username . ' ' . Setting::getSetting('site_name');
-                $this->data['pageTitle'] = 'Edit Semester';
-                $this->data['pageDesc']  = 'Edit a Semester';
-                $this->data['semester']  = $semester;
+                $this->data['title']             = 'Edit Semester ' . $semester->username . ' ' . Setting::getSetting('site_name');
+                $this->data['pageTitle']         = 'Edit Semester';
+                $this->data['pageDesc']          = 'Edit a Semester';
+                $this->data['semester']          = $semester;
+                $this->data['subjects']          = Subject::all();
+                $this->data['semester_subjects'] = SemesterSubject::where('semester_id', $semester->id)->get();
+
 
                 return view('dashboard.semesters.edit', $this->data);
             } else {
@@ -181,7 +191,8 @@ class SemesterController extends Controller
                     'name'     => 'required|unique:semesters,name,' . $semester->id,
                     'start_at' => 'required|date',
                     'end_at'   => 'required|date',
-                    'status'   => 'required|in:1,0'
+                    'status'   => 'required|in:1,0',
+                    'subjects' => 'required'
                 ];
                 $messages  = [
                     'name.required'     => 'The Name field is required',
@@ -192,6 +203,7 @@ class SemesterController extends Controller
                     'end_et.date'       => 'The End Date is not valid format',
                     'status.required'   => 'The Status field is required',
                     'status.in'         => 'The Status value not valid',
+                    'subjects.required' => 'The Subjects field is required',
                 ];
                 $validator = Validator::make($data, $rules, $messages);
                 if ($validator->fails()) {
@@ -204,6 +216,12 @@ class SemesterController extends Controller
                     $semester->end_at   = $data['end_at'];
                     $semester->status   = $data['status'];
                     if ($semester->update()) {
+                        $semester_subjects = SemesterSubject::where('semester_id',
+                            $semester->id)->get();
+                        foreach ($semester_subjects as $key) {
+                            $semester->subjects()->detach($key->id);
+                        }
+                        $semester->subjects()->attach($data['subjects']);
                         Flash::success("Data has been updated");
 
                         return redirect()->route('semesters.index');
@@ -254,7 +272,7 @@ class SemesterController extends Controller
                     } else {
 
                         if ($semester->delete()) {
-                            
+
                             $this->data['semesters'] = Semester::all();
 
                             return view('dashboard.semesters.index', $this->data)->renderSections()['content'];
