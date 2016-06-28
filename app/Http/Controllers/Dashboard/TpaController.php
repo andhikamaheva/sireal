@@ -7,14 +7,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Models\Oprec;
 use App\Models\Setting;
+use App\Models\SelectedSubject;
 use Flash;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 
-
-class AdministrationController extends Controller
+class TpaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,22 +25,24 @@ class AdministrationController extends Controller
     {
         $this->auth = $auth;
         $this->middleware('auth');
+
     }
 
     public function index()
     {
         //
-        if (Auth::user()->can('scores-administration')) {
+        if (Auth::user()->can('scores-tpa')) {
             $this->data['title']     = 'List Students ' . Setting::getSetting('site_name');
             $this->data['pageTitle'] = 'List Students';
             $this->data['pageDesc']  = 'List all students';
-            $this->data['oprecs']    = Oprec::with('students')->where('oprecs.status', 1)->get();
 
 
+            $this->data['oprecs'] = Oprec::with('students', 'file')->whereHas('file', function ($query) {
+                $query->where('status', 1);
+            })->get();
 
 
-
-            return view('dashboard.administrations.index', $this->data);
+            return view('dashboard.tpas.index', $this->data);
         } else {
             Flash::error("You don't have permissions to perform this action!");
 
@@ -89,17 +91,45 @@ class AdministrationController extends Controller
     public function edit($id)
     {
         //
-        if (Auth::user()->can('scores-administration')) {
-            $this->data['title']     = 'Administration Scoring ' . Setting::getSetting('site_name');
-            $this->data['pageTitle'] = 'Administration Scoring ';
+        if (Auth::user()->can('scores-tpa')) {
+            $this->data['title']     = 'TPA Scoring ' . Setting::getSetting('site_name');
+            $this->data['pageTitle'] = 'TPA Scoring ';
             $this->data['pageDesc']  = '';
             $this->data['oprec']     = Oprec::with('students')->where('oprecs.status', 1)->where('oprecs.id',
                 $id)->first();
 
-            //dd($this->data['oprec']->file);
+
+            $coordinators           = Auth::user()->subjects->pluck('id');
+            //dd($this->data['oprec']->selectedsubjects);
+            $this->data['subjects'] = array();
+            foreach ($coordinators as $key) {
+                foreach ($this->data['oprec']->selectedsubjects as $newkey) {
+                    if ($key == $newkey->id) {
+                        array_push($this->data['subjects'], $newkey);
 
 
-            return view('dashboard.administrations.edit', $this->data);
+                    }
+                }
+
+            }
+            //dd($this->data['subjects']);
+
+            $valid = false;
+            foreach ($coordinators as $key) {
+                foreach ($this->data['oprec']->selectedsubjects as $newkey) {
+                    if ($key == $newkey->id) {
+                        $valid = true;
+
+                        return view('dashboard.tpas.edit', $this->data);
+                    }
+                }
+
+            }
+
+
+            Flash::error("You don't have permissions to perform this action!");
+
+            return redirect()->route('dashboard');
         } else {
             Flash::error("You don't have permissions to perform this action!");
 
@@ -117,33 +147,43 @@ class AdministrationController extends Controller
     public function update(Request $request, $id)
     {
         //
-        if (Auth::user()->can('scores-administration')) {
+        if (Auth::user()->can('scores-tpa')) {
             $oprec = Oprec::find($id);
             if ($oprec) {
-                $data      = $request->all();
-                $rules     = [
-                    'status' => 'required|in:1,0'
+                $data     = $request->all();
+                $rules    = [
+
                 ];
-                $messages  = [
-                    'status.required' => 'Status is required',
-                    'status.in'       => 'Status value is not valid',
+                $messages = [
+
+                    'score.between' => 'The Score value is not valid number format',
+                    'score.numeric' => 'The Score value is not valid number format',
                 ];
+                foreach ($request->get('score') as $key => $val) {
+                    $rules['score.' . $key]                 = 'numeric|between:0,100';
+                    $messages['score.' . $key . '.numeric'] = 'The Score value is not valid number format';
+                    $messages['score.' . $key . '.between'] = 'The Score value is not valid number format';
+
+                }
+
+
                 $validator = Validator::make($data, $rules, $messages);
                 if ($validator->fails()) {
                     $errors = $validator->errors()->all();
 
                     return redirect()->back()->with('errors', $errors)->withInput($data);
                 } else {
-                    $oprec->file->status = $data['status'];
-                    if ($oprec->file->update()) {
-                        Flash::success("Data has been updated");
+                    foreach ($data['score'] as $item) {
 
-                        return redirect()->route('administrations.index');
-                    } else {
-                        Flash::error('Oopss..something went wrong. Please contact andhika@stikom.edu');
+                        $subject_score = SelectedSubject::where('oprec_id', $id)->where('subject_id',
+                            key($data['score']))->update([ 'score' => $item ]);
 
-                        return redirect('dashboard');
+                        next($data['score']);
                     }
+
+                    Flash::success("Data has been updated");
+
+                    return redirect()->route('tpas.index');
 
                 }
 
@@ -157,6 +197,8 @@ class AdministrationController extends Controller
 
             return redirect()->route('dashboard');
         }
+
+
     }
 
     /**

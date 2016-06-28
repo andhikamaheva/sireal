@@ -26,6 +26,6 @@ class Student extends Model
 
     public function oprecs()
     {
-        return $this->hasMany('App\Models\Oprec');
+        return $this->hasMany('App\Models\Oprec', 'student_id');
     }
 }

@@ -13,7 +13,8 @@ class File extends Model
         'photo',
         'app_letter',
         'cv',
-        'transcript'
+        'transcript',
+        'status'
     ];
     public    $timestamps = true;
 }

@@ -29,11 +29,7 @@
                             <div class="table-toolbar">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="btn-group">
-                                            <a href="{{route('administrations.create')}}" class="btn green">
-                                                Add New <i class="fa fa-plus"></i>
-                                            </a>
-                                        </div>
+
                                     </div>
                                     <div class="col-md-6">
                                         <div class="btn-group pull-right">
@@ -82,35 +78,28 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($students as $student)
+                                @foreach($oprecs as $oprec)
                                     <tr class="odd gradeX">
                                         <td>
-                                            {{$student->id}}
+                                            {{$oprec->id}}
                                         </td>
                                         <td>
-                                            {{$student->nim}}
+                                            {{$oprec->students->nim}}
                                         </td>
                                         <td>
-                                            {{$student->name}}
+                                            {{$oprec->students->name}}
                                         </td>
                                         <td>
+                                            {{$oprec->created_at}}
+                                        </td>
+                                        <td>
+                                            {{statusScore($oprec->file->status)}}
+                                        </td>
 
-                                        </td>
-                                        <td>
-                                        {{}}
-                                        </td>
-                                        <td>
-                                            {{statusTable($student->status)}}
-                                        </td>
                                         <td align="center">
                                             <a class="btn green"
-                                               href="{{route('administrations.edit', ['id' => $student->id])}}"><i
-                                                        class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-
-                                            <a class="btn red"
-                                               onclick="deleteData('{{$student->id}}',' {{$student->name}}')"><i
-                                                        class="fa fa-trash-o" aria-hidden="true"></i></a>
-
+                                               href="{{route('administrations.edit', ['id' => $oprec->id])}}"><i
+                                                        class="fa fa-search-plus" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach

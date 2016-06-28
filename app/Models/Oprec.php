@@ -16,13 +16,19 @@ class Oprec extends Model
     ];
     public    $timestamps = true;
 
-    public function selectedsubject()
+    public function selectedsubjects()
     {
         return $this->belongsToMany('App\Models\Subject', 'selected_subject',
-            'oprec_id', 'subject_id');
+            'oprec_id', 'subject_id', 'score')->withPivot('score');
     }
 
-    public function students(){
-        return $this->belongsTo('App\Models\Student');
+    public function file()
+    {
+        return $this->hasone('App\Models\File', 'id', 'file_id');
+    }
+
+    public function students()
+    {
+        return $this->belongsTo('App\Models\Student', 'student_id', 'id');
     }
 }

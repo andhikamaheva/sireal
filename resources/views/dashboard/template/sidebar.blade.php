@@ -33,37 +33,37 @@
             </li>
 
             @if(Auth::user()->can('scores'))
-                <li class=" {{ Request::is('dashboard/scores/*') ||  Request::is('dashboard/scores') ? 'active open' : ''  }} ">
+                <li class=" {{ Request::is('dashboard/dashboard/scores*') ||  Request::is('dashboard/scores/*') ? 'active open' : ''  }} ">
                     <a href="javascript:;">
                         <i class="fa fa-sort-numeric-desc" aria-hidden="true"></i>
-                        <span class="title">Scores</span>
-                        <span class=" {{ Request::is('dashboard/scores/*') ||  Request::is('dashboard/scores') ? 'arrow open selected' : 'arrow'  }} "></span>
+                        <span class="title">Scoring</span>
+                        <span class=" {{ Request::is('dashboard/dashboard/scores*') ||  Request::is('dashboard/scores/*') ? 'arrow open selected' : 'arrow'  }} "></span>
                     </a>
                     <ul class="sub-menu">
 
                         @if(Auth::user()->can('scores-administration'))
-                            <li class="{{ Request::is('dashboard/scores/administration') ? 'active' : '' }}">
+                            <li class="{{ Request::is('dashboard/dashboard/scores/administrations') ||  Request::is('dashboard/scores/administrations/*') ? 'active' : '' }}">
                                 <a href="{{ route('administrations.index')}}">
                                     Administration</a>
                             </li>
                         @endif
 
                         @if(Auth::user()->can('scores-tpa'))
-                            <li class="{{ Request::is('dashboard/scores/tpa') ? 'active' : '' }}">
-                                <a href="{{ route('batches.index')}}">
+                            <li class="{{ Request::is('dashboard/scores/tpas') || Request::is('dashboard/scores/tpas/*') ? 'active' : '' }}">
+                                <a href="{{ route('tpas.index')}}">
                                     TPA</a>
                             </li>
                         @endif
 
                         @if(Auth::user()->can('scores-audition'))
-                            <li class="{{ Request::is('dashboard/scores/audition') ? 'active' : '' }}">
-                                <a href="{{ route('batches.create')}}">
+                            <li class="{{ Request::is('dashboard/scores/auditions') || Request::is('dashboard/scores/auditions/*') ? 'active' : '' }}">
+                                <a href="{{ route('auditions.index')}}">
                                     Audition</a>
                             </li>
                         @endif
 
                         @if(Auth::user()->can('scores-interview'))
-                            <li class="{{ Request::is('dashboard/scores/interview') ? 'active' : '' }}">
+                            <li class="{{ Request::is('dashboard/scores/interviews') || Request::is('dashboard/scores/interviews/*') ? 'active' : '' }}">
                                 <a href="{{ route('batches.create')}}">
                                     Interview</a>
                             </li>
@@ -74,7 +74,7 @@
                 </li>
             @endif
 
-            @if(Auth::user()->can('scores'))
+            {{--@if(Auth::user()->can('scores'))
                 <li class=" {{ Request::is('dashboard/scores/*') ||  Request::is('dashboard/scores') ? 'active open' : ''  }} ">
                     <a href="javascript:;">
                         <i class="fa fa-files-o" aria-hidden="true"></i>
@@ -101,7 +101,7 @@
 
                     </ul>
                 </li>
-            @endif
+            @endif--}}
 
 
             @if(Auth::user()->can('view-batch'))

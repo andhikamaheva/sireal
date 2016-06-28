@@ -14,4 +14,9 @@ class OprecAudition extends Model
         'score'
     ];
     public    $timestamps = true;
+
+    public function auditionscores()
+    {
+        return $this->hasMany('App\Models\AuditionScore', 'oprec_audition_id');
+    }
 }

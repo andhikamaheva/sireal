@@ -13,7 +13,6 @@
  */
 
 
-
 function formatDateString($date)
 {
     $data = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $date)->toDateString();
@@ -25,7 +24,20 @@ function statusTable($data)
 {
     if ($data == 1) {
         return 'Active';
+    } elseif ($data == null) {
+        return 'None';
     } else {
         return 'Not Active';
+    }
+}
+
+function statusScore($data)
+{
+    if ($data == 1) {
+        return 'Accepted';
+    } elseif ($data == null) {
+        return 'None';
+    } else {
+        return 'Decline';
     }
 }

@@ -16,4 +16,6 @@ class AuditionScore extends Model
     ];
     public    $timestamps = true;
 
+    
+
 }

@@ -57,7 +57,8 @@ class User extends Authenticatable
 
     public function subjects()
     {
-        return $this->belongsToMany('App\Models\Subject');
+        return $this->belongsToMany('App\Models\Subject', 'subject_coordinators',
+            'user_id', 'subject_id');
     }
 
     protected $dates = [ 'deleted_at' ];

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Dashboard;
 
 use Alert;
 use App\Http\Controllers\Controller;
@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 
-class AuditionController extends Controller
+class InterviewController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -32,23 +32,6 @@ class AuditionController extends Controller
     public function index()
     {
         //
-        if (Auth::user()->can('scores-tpa')) {
-            $this->data['title']     = 'List Students ' . Setting::getSetting('site_name');
-            $this->data['pageTitle'] = 'List Students';
-            $this->data['pageDesc']  = 'List all students';
-
-
-            $this->data['oprecs'] = Oprec::with('students', 'file')->whereHas('file', function ($query) {
-                $query->where('status', 1);
-            })->get();
-
-
-            return view('dashboard.auditions.index', $this->data);
-        } else {
-            Flash::error("You don't have permissions to perform this action!");
-
-            return redirect()->route('dashboard');
-        }
     }
 
     /**

@@ -123,3 +123,33 @@ Breadcrumbs::register('administrations.index', function ($breadcrumbs) {
     $breadcrumbs->parent('dashboard');
     $breadcrumbs->push('Administration', route('administrations.index'));
 });
+
+// Dashboard > Administration Scoring
+Breadcrumbs::register('administrations.edit', function ($breadcrumbs, $id) {
+    $breadcrumbs->parent('dashboard');
+    $breadcrumbs->push('Administration Scoring', route('administrations.edit', [ 'id' => $id ]));
+});
+
+// Dashboard > TPA
+Breadcrumbs::register('tpas.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('dashboard');
+    $breadcrumbs->push('TPA', route('tpas.index'));
+});
+
+// Dashboard > TPA Scoring
+Breadcrumbs::register('tpas.edit', function ($breadcrumbs, $id) {
+    $breadcrumbs->parent('dashboard');
+    $breadcrumbs->push('TPA Scoring', route('tpas.edit', [ 'id' => $id ]));
+});
+
+// Dashboard > Auditions
+Breadcrumbs::register('auditions.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('dashboard');
+    $breadcrumbs->push('Auditions', route('auditions.index'));
+});
+
+// Dashboard > Audition Scoring
+Breadcrumbs::register('auditions.edit', function ($breadcrumbs, $id) {
+    $breadcrumbs->parent('dashboard');
+    $breadcrumbs->push('Audition Scoring', route('auditions.edit', [ 'id' => $id ]));
+});

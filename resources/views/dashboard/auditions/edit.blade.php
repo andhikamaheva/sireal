@@ -18,7 +18,7 @@
                 <small> {{$pageDesc}} </small>
             </h3>
             <div class="page-bar">
-                {!! Breadcrumbs::render('semesters.edit', $semester->id) !!}
+                {!! Breadcrumbs::render('tpas.edit', $oprec->id) !!}
             </div>
             <!-- END PAGE HEADER-->
             <!-- BEGIN PAGE CONTENT-->
@@ -28,122 +28,118 @@
                     <!-- BEGIN SAMPLE FORM PORTLET-->
                     <div class="portlet box ">
                         <div class="row">
-                            <div class="col-md-3">
-                            </div>
-                            <div class="col-md-6">
+                            {{-- <div class="col-md-3">
+                             </div>--}}
+                            <div class="col-md-12">
                                 <div class="portlet-body form">
 
                                     <form role="form" method="post"
-                                          action="{{route('semesters.update', ['id' => $semester->id])}}"
+                                          action="{{route('tpas.update', ['id' => $oprec->id])}}"
                                           style="padding-top:10px;">
                                         <input type="hidden" name="_method" value="PATCH">
                                         @include('flash::message')
                                         @include('sweet::alert')
                                         {{csrf_field()}}
+
                                         <div class="form-body">
-                                            <div class="form-group">
-                                                <label>Semester Name</label>
-                                                <div class="input-group">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Registration ID</label>
+                                                        <div class="input-group">
 									<span class="input-group-addon">
 									</span>
-                                                    <input type="text" name="name"
-                                                           value="{{$semester->name or old('name')}}"
-                                                           class="form-control" placeholder="Semester Name">
-
-                                                </div>
-                                                For example : Semester 16.1
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>Start dan End Date</label>
-                                                        <div class="input-group input-large date-picker input-daterange"
-                                                             data-date="2012-12-12" data-date-format="yyyy-mm-dd">
-                                                            <input type="text" class="form-control"
-                                                                   placeholder="Start Date" name="start_at"
-                                                                   value="{{$semester->start_at or old('start_at')}}"
+                                                            <input type="text" name="id"
+                                                                   value="{{$oprec->id}}"
+                                                                   class="form-control" placeholder="Registration ID"
                                                                    readonly>
-												<span class="input-group-addon">
-												to </span>
-                                                            <input type="text" class="form-control"
-                                                                   placeholder="End Date" name="end_at"
-                                                                   value="{{$semester->end_at or old('end_at')}}"
-                                                                   readonly>
+
                                                         </div>
-                                                        <!-- /input-group -->
-											<span class="help-block">
-										</span>
                                                     </div>
+                                                    <div class="form-group">
+                                                        <label>Registration Date</label>
+                                                        <div class="input-group">
+									<span class="input-group-addon">
+									</span>
+                                                            <input type="text" name="id"
+                                                                   value="{{$oprec->created_at}}"
+                                                                   class="form-control" placeholder="Registration Date"
+                                                                   readonly>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>NIM</label>
+                                                        <div class="input-group">
+									<span class="input-group-addon">
+									</span>
+                                                            <input type="text" name="nim"
+                                                                   value="{{$oprec->students->nim}}"
+                                                                   class="form-control" placeholder="NIM" readonly>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Name</label>
+                                                        <div class="input-group">
+									<span class="input-group-addon">
+									</span>
+                                                            <input type="text" name="name"
+                                                                   value="{{$oprec->students->name}}"
+                                                                   class="form-control" placeholder="Student Name"
+                                                                   readonly>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Subjects</label>
+                                                        <div class="input-group">
+                                                            <ul>
+                                                                @foreach($oprec->selectedsubjects as $subject)
+                                                                    <li>{{$subject->name}}</li>
+                                                                @endforeach
+                                                            </ul>
+
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="col-md-6">
+                                                    @foreach($subjects as $subject)
+                                                        <div class="form-group">
+                                                            <label>{{$subject->name}}</label>
+                                                            <div class="input-group">
+									<span class="input-group-addon">
+									</span>
+                                                                <input type="text" name="score[{{$subject->id}}]"
+                                                                       value="{{$subject->pivot->score}}"
+                                                                       class="form-control" placeholder="Score"
+                                                                       >
+
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+
+
+
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label>Status</label>
-                                                <div class="input-group">
 
-                                                    <select class="form-control" name="status">
-                                                        <option value="1" {{$semester->status==1 ? 'active' : ''}}>
-                                                            Active
-                                                        </option>
-                                                        <option value="0" {{$semester->status==0 ? 'active' : ''}}>
-                                                            Deactive
-                                                        </option>
-                                                    </select>
-                                                </div>
 
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Subjects</label>
-                                                <select data-tags="true" value="" class="form-control" name="subjects[]"
-                                                        id="subjects" multiple>
-                                                    @if(!(old('subjects')))
-                                                        @foreach($subjects as $subject)
-                                                            <option value="{{$subject->id}}"
-                                                                    @foreach($semester_subjects as $key)
-                                                                    @if($key->subject_id == $subject->id)
-                                                                    selected
-                                                                    @endif
-                                                                    @endforeach
-                                                            >{{$subject->name}} ({{$subject->code}})</option>
-                                                        @endforeach
-                                                    @endif
-
-                                                    @if(old('subjects'))
-                                                        @foreach($subjects as $subject)
-                                                            <option value="{{$subject->id}}"
-                                                                    @foreach(old('subjects') as $old)
-                                                                    @if($old == $subject->id)
-                                                                    selected
-                                                                    @endif
-                                                                    @endforeach
-                                                            >{{$subject->name}} ({{$subject->code}})</option>
-                                                        @endforeach
-                                                    @endif
-                                                </select>
-                                            </div>
-                                            <script>
-                                                $('#subjects').select2({
-                                                    createTag: function (params) {
-                                                        return undefined;
-                                                    },
-                                                    tags: true,
-                                                    multiple: true,
-                                                    tokenSeparators: [',']
-                                                });
-                                            </script>
                                         </div>
                                         <div class="form-actions"
                                              style="background-color:#FFFFFF;align:center;text-align:center;">
                                             <button type="submit" class="btn blue">Submit</button>
-                                            <button type="button" class="btn default">Cancel</button>
+                                            <a href="{{route('administrations.index')}}" type="button"
+                                               class="btn default">Cancel</a>
                                         </div>
                                     </form>
                                 </div>
                             </div>
                             <!-- END SAMPLE FORM PORTLET-->
 
-                            <div class="col-md-3">
-                            </div>
+
                         </div>
                     </div>
 

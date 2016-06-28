@@ -52,6 +52,29 @@ Route::group([
                 'update'  => 'administrations.update',
             ]
         ]);
+
+        Route::resource('tpas', 'Dashboard\TpaController', [
+            'names' => [
+                'index'   => 'tpas.index',
+                'create'  => 'tpas.create',
+                'destroy' => 'tpas.destroy',
+                'store'   => 'tpas.store',
+                'edit'    => 'tpas.edit',
+                'update'  => 'tpas.update',
+            ],
+        ]);
+
+
+        Route::resource('auditions', 'Dashboard\TpaController', [
+            'names' => [
+                'index'   => 'auditions.index',
+                'create'  => 'auditions.create',
+                'destroy' => 'auditions.destroy',
+                'store'   => 'auditions.store',
+                'edit'    => 'auditions.edit',
+                'update'  => 'auditions.update',
+            ],
+        ]);
     });
 
     Route::resource('semesters', 'Dashboard\SemesterController', [
@@ -75,7 +98,7 @@ Route::group([
             'update'  => 'batches.update',
         ],
     ]);
-    //Students
+
     Route::resource('students', 'Dashboard\StudentController', [
         'names' => [
             'index'   => 'students.index',
@@ -87,7 +110,7 @@ Route::group([
         ],
     ]);
 
-    //Subjects
+
     Route::resource('subjects', 'Dashboard\SubjectController', [
         'names' => [
             'index'   => 'subjects.index',
