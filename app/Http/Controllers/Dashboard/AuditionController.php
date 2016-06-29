@@ -186,7 +186,7 @@ class AuditionController extends Controller
                             $score->oprec_audition_id = $audition->id;
                             if ($score->save()) {
                                 $audition->score = ($score->skill+$score->appearance+$score->communication+$score->improvisation)/4;
-                                if($audition->update){
+                                if($audition->save()){
                                     Flash::success('Data has been updated!');
 
                                     return redirect()->route('auditions.index');

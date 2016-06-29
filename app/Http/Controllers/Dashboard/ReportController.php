@@ -132,10 +132,11 @@ class ReportController extends Controller
                 foreach ($vektorS as $key) {
                     $vekV  = $key['vektorS'] / $total;
                     $final = array(
+                        'score'   => $vekV,
                         'nim'     => $key['nim'],
                         'name'    => $key['name'],
-                        'subject' => $key['subject'],
-                        'score'   => $vekV
+                        'subject' => $key['subject']
+
                     );
                     array_push($vektorV, $final);
                 }
@@ -144,9 +145,9 @@ class ReportController extends Controller
                 $this->data['subject'] = $name->name;
 
 
-
+                arsort($vektorV);
                 $this->data['students'] = $vektorV;
-                
+
 
                 //dd($this->data['students']);
 

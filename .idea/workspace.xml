@@ -5,29 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6ea9e1ed-474b-4662-a7cb-bdb118a9e5c3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Http/Controllers/Dashboard/ReportController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Http/Controllers/Dashboard/WeightController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Models/Weight.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/dashboard/interviews/components_pickers.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/dashboard/subjects/edit.blade.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sireal.mwb" afterPath="$PROJECT_DIR$/sireal.mwb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sireal.mwb.bak" afterPath="$PROJECT_DIR$/sireal.mwb.bak" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Dashboard/AuditionController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Dashboard/AuditionController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Dashboard/InterviewController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Dashboard/InterviewController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/RegistrationController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/RegistrationController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Helpers.php" afterPath="$PROJECT_DIR$/app/Http/Helpers.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/breadcrumbs.php" afterPath="$PROJECT_DIR$/app/Http/breadcrumbs.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/AuditionScore.php" afterPath="$PROJECT_DIR$/app/Models/AuditionScore.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/OprecInterview.php" afterPath="$PROJECT_DIR$/app/Models/OprecInterview.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/dashboard/auditions/edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/dashboard/auditions/edit.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/dashboard/auditions/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/dashboard/auditions/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/dashboard/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/dashboard/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/dashboard/interviews/edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/dashboard/interviews/edit.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/dashboard/interviews/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/dashboard/interviews/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/dashboard/template/sidebar.blade.php" afterPath="$PROJECT_DIR$/resources/views/dashboard/template/sidebar.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/dashboard/tpas/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/dashboard/tpas/index.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Dashboard/ReportController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Dashboard/ReportController.php" />
     </list>
     <ignored path="sireal.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -52,8 +31,8 @@
       <file leaf-file-name="AuditionController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Dashboard/AuditionController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3484">
-              <caret line="146" column="14" selection-start-line="146" selection-start-column="14" selection-end-line="165" selection-end-column="18" />
+            <state relative-caret-position="511">
+              <caret line="188" column="52" selection-start-line="188" selection-start-column="52" selection-end-line="188" selection-end-column="52" />
               <folding>
                 <element signature="e#50#60#0#PHP" expanded="true" />
               </folding>
@@ -64,75 +43,11 @@
       <file leaf-file-name="ReportController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Dashboard/ReportController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="449">
-              <caret line="42" column="46" selection-start-line="42" selection-start-column="46" selection-end-line="42" selection-end-column="46" />
+            <state relative-caret-position="1785">
+              <caret line="145" column="0" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
               <folding>
                 <element signature="e#50#60#0#PHP" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Helpers.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Helpers.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="40" column="5" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="create.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/dashboard/reports/create.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="728">
-              <caret line="28" column="20" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/dashboard/reports/index.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="562">
-              <caret line="53" column="10" selection-start-line="53" selection-start-column="10" selection-end-line="53" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/dashboard/index.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1014">
-              <caret line="124" column="6" selection-start-line="124" selection-start-column="6" selection-end-line="124" selection-end-column="6" />
-              <folding>
-                <marker date="1467160375541" expanded="false" signature="6591:10389" ph="..." />
-                <marker date="1467160375541" expanded="false" signature="9477:9491" ph="..." />
-                <marker date="1467160375541" expanded="false" signature="9539:9563" ph="..." />
-                <marker date="1467160375541" expanded="false" signature="10443:33499" ph="..." />
-                <marker date="1467160375541" expanded="false" signature="11517:11531" ph="..." />
-                <marker date="1467160375541" expanded="false" signature="22136:22150" ph="..." />
-                <marker date="1467160375541" expanded="false" signature="33553:36925" ph="..." />
-                <marker date="1467160375541" expanded="false" signature="36979:64403" ph="..." />
-                <marker date="1467160375541" expanded="false" signature="40577:40591" ph="..." />
-                <marker date="1467160375541" expanded="false" signature="51789:51803" ph="..." />
-                <marker date="1467160375541" expanded="false" signature="58353:58367" ph="..." />
-                <marker date="1467160375541" expanded="false" signature="64457:70572" ph="..." />
-                <marker date="1467160375541" expanded="false" signature="65587:65601" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="export.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/dashboard/reports/export.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1300">
-              <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -178,7 +93,6 @@
         <option value="$PROJECT_DIR$/resources/views/dashboard/auditions/index.blade.php" />
         <option value="$PROJECT_DIR$/app/Models/AuditionScore.php" />
         <option value="$PROJECT_DIR$/resources/views/dashboard/auditions/edit.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Dashboard/AuditionController.php" />
         <option value="$PROJECT_DIR$/resources/views/dashboard/interviews/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/dashboard/interviews/edit.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Dashboard/InterviewController.php" />
@@ -195,6 +109,7 @@
         <option value="$PROJECT_DIR$/app/Http/Helpers.php" />
         <option value="$PROJECT_DIR$/resources/views/dashboard/reports/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/dashboard/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Dashboard/AuditionController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Dashboard/ReportController.php" />
       </list>
     </option>
@@ -468,12 +383,12 @@
       <workItem from="1466941771443" duration="770000" />
       <workItem from="1467078961544" duration="100000" />
       <workItem from="1467079773480" duration="37810000" />
-      <workItem from="1467160301050" duration="310000" />
+      <workItem from="1467160301050" duration="1877000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="134059000" />
+    <option name="totallyTimeSpent" value="135626000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1366" height="744" extended-state="6" />
@@ -683,13 +598,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Dashboard/TpaController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="178" column="78" selection-start-line="178" selection-start-column="48" selection-end-line="178" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Models/OprecAudition.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
@@ -843,16 +751,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Dashboard/AuditionController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3484">
-          <caret line="146" column="14" selection-start-line="146" selection-start-column="14" selection-end-line="165" selection-end-column="18" />
-          <folding>
-            <element signature="e#50#60#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/dashboard/reports/export.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1300">
@@ -899,10 +797,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Dashboard/TpaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="662">
+          <caret line="177" column="59" selection-start-line="177" selection-start-column="59" selection-end-line="177" selection-end-column="59" />
+          <folding>
+            <element signature="e#50#60#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Dashboard/AuditionController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="511">
+          <caret line="188" column="52" selection-start-line="188" selection-start-column="52" selection-end-line="188" selection-end-column="52" />
+          <folding>
+            <element signature="e#50#60#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Dashboard/ReportController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="42" column="46" selection-start-line="42" selection-start-column="46" selection-end-line="42" selection-end-column="46" />
+        <state relative-caret-position="1785">
+          <caret line="145" column="0" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
           <folding>
             <element signature="e#50#60#0#PHP" expanded="true" />
           </folding>
