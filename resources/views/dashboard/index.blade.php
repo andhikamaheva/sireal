@@ -122,7 +122,8 @@
   </div>
   <!-- END PAGE HEADER-->
   <!-- BEGIN DASHBOARD STATS -->
-  <div class="row">
+  <h2></h2>
+{{--  <div class="row">
    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
     <div class="dashboard-stat blue-madison">
      <div class="visual">
@@ -2226,7 +2227,7 @@
     <!-- END PORTLET-->
    </div>
   </div>
- </div>
+ </div>--}}
 @stop
 @section('js')
 

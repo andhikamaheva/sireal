@@ -69,9 +69,9 @@
                                     <th>
                                         Register Date
                                     </th>
-                                    <th>
+                                    {{--<th>
                                         Status
-                                    </th>
+                                    </th>--}}
                                     <th style="text-align:center;">
                                         Actions
                                     </th>
@@ -92,9 +92,9 @@
                                         <td>
                                             {{$oprec->created_at}}
                                         </td>
-                                        <td>
+                                      {{--  <td>
                                             {{statusScore($oprec->file->status)}}
-                                        </td>
+                                        </td>--}}
 
                                         <td align="center">
                                             <a class="btn green"

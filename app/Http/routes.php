@@ -65,7 +65,7 @@ Route::group([
         ]);
 
 
-        Route::resource('auditions', 'Dashboard\TpaController', [
+        Route::resource('auditions', 'Dashboard\AuditionController', [
             'names' => [
                 'index'   => 'auditions.index',
                 'create'  => 'auditions.create',
@@ -73,6 +73,33 @@ Route::group([
                 'store'   => 'auditions.store',
                 'edit'    => 'auditions.edit',
                 'update'  => 'auditions.update',
+            ],
+        ]);
+
+        /*  Route::get('weighting', [ 'as'   => 'weight.index',
+                                    'uses' => 'DashboardControllerWeightController'
+
+          ]);*/
+
+        Route::resource('interviews', 'Dashboard\InterviewController', [
+            'names' => [
+                'index'   => 'interviews.index',
+                'create'  => 'interviews.create',
+                'destroy' => 'interviews.destroy',
+                'store'   => 'interviews.store',
+                'edit'    => 'interviews.edit',
+                'update'  => 'interviews.update',
+            ],
+        ]);
+
+        Route::resource('weights', 'Dashboard\WeightController', [
+            'names' => [
+                'index'   => 'weights.index',
+                'create'  => 'weights.create',
+                'destroy' => 'weights.destroy',
+                'store'   => 'weights.store',
+                'edit'    => 'weights.edit',
+                'update'  => 'weights.update',
             ],
         ]);
     });
@@ -87,7 +114,18 @@ Route::group([
             'update'  => 'semesters.update',
         ],
     ]);
-    //Semesters
+
+    Route::resource('reports', 'Dashboard\ReportController', [
+        'names' => [
+            'index'   => 'reports.index',
+            'create'  => 'reports.create',
+            'destroy' => 'reports.destroy',
+            'store'   => 'reports.store',
+            'edit'    => 'reports.edit',
+            'update'  => 'reports.update',
+        ],
+    ]);
+
     Route::resource('batches', 'Dashboard\BatchController', [
         'names' => [
             'index'   => 'batches.index',

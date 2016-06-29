@@ -69,9 +69,9 @@
                                     <th>
                                         Register Date
                                     </th>
-                                    <th>
+                                   {{-- <th>
                                         Status
-                                    </th>
+                                    </th>--}}
                                     <th style="text-align:center;">
                                         Actions
                                     </th>
@@ -92,13 +92,13 @@
                                         <td>
                                             {{$oprec->created_at}}
                                         </td>
-                                        <td>
+                                       {{-- <td>
                                             {{statusScore($oprec->file->status)}}
-                                        </td>
+                                        </td>--}}
 
                                         <td align="center">
                                             <a class="btn green"
-                                               href="{{route('tpas.edit', ['id' => $oprec->id])}}"><i
+                                               href="{{route('auditions.edit', ['id' => $oprec->id])}}"><i
                                                         class="fa fa-search-plus" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>

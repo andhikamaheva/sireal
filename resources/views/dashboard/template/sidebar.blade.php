@@ -64,7 +64,7 @@
 
                         @if(Auth::user()->can('scores-interview'))
                             <li class="{{ Request::is('dashboard/scores/interviews') || Request::is('dashboard/scores/interviews/*') ? 'active' : '' }}">
-                                <a href="{{ route('batches.create')}}">
+                                <a href="{{ route('interviews.index')}}">
                                     Interview</a>
                             </li>
                         @endif
@@ -74,34 +74,6 @@
                 </li>
             @endif
 
-            {{--@if(Auth::user()->can('scores'))
-                <li class=" {{ Request::is('dashboard/scores/*') ||  Request::is('dashboard/scores') ? 'active open' : ''  }} ">
-                    <a href="javascript:;">
-                        <i class="fa fa-files-o" aria-hidden="true"></i>
-                        <span class="title">Report</span>
-                        <span class=" {{ Request::is('dashboard/scores/*') ||  Request::is('dashboard/scores') ? 'arrow open selected' : 'arrow'  }} "></span>
-                    </a>
-                    <ul class="sub-menu">
-
-
-                        @if(Auth::user()->can('scores-audition'))
-                            <li class="{{ Request::is('dashboard/scores/audition') ? 'active' : '' }}">
-                                <a href="{{ route('batches.create')}}">
-                                    Final Report</a>
-                            </li>
-                        @endif
-
-                        @if(Auth::user()->can('scores-interview'))
-                            <li class="{{ Request::is('dashboard/scores/interview') ? 'active' : '' }}">
-                                <a href="{{ route('batches.create')}}">
-                                    Attendance Report</a>
-                            </li>
-                        @endif
-
-
-                    </ul>
-                </li>
-            @endif--}}
 
 
             @if(Auth::user()->can('view-batch'))
@@ -129,6 +101,43 @@
                     </ul>
                 </li>
             @endif
+
+            @if(Auth::user()->can('weighting'))
+                <li class="start {{ Request::is('dashboard/weighting') || Request::is('dashboard/weighting/*')  ? 'active open' : '' }} ">
+                    <a href="{{ route('weights.edit', ['id' => 1]) }}">
+                        <i class="fa fa-fire"></i>
+                        <span class="title">Weighting</span>
+                        @if(Request::is('dashboard/weighting') || Request::is('dashboard/weighting/*'))
+                            <span class="selected"></span>
+                            <span class="arrow"></span>
+                        @endif
+
+
+                    </a>
+                </li>
+            @endif
+            @if(Auth::user()->can('report'))
+                <li class=" {{ Request::is('dashboard/reports/*') ||  Request::is('dashboard/reports') ? 'active open' : ''  }} ">
+                    <a href="javascript:;">
+                        <i class="fa fa-files-o" aria-hidden="true"></i>
+                        <span class="title">Report</span>
+                        <span class=" {{ Request::is('dashboard/reports/*') ||  Request::is('dashboard/reports') ? 'arrow open selected' : 'arrow'  }} "></span>
+                    </a>
+                    <ul class="sub-menu">
+
+
+                        @if(Auth::user()->can('report'))
+                            <li class="{{ Request::is('dashboard/scores/reports') || Request::is('dashboard/scores/reports/*') ? 'active' : '' }}">
+                                <a href="{{ route('reports.index')}}">
+                                    Final Report</a>
+                            </li>
+                        @endif
+
+
+                    </ul>
+                </li>
+            @endif
+
             {{-- @if(Auth::user()->can('view-batch'))
                  <li class=" {{ Request::is('dashboard/batches/*') ||  Request::is('dashboard/batches') ? 'active open' : ''  }} ">
                      <a href="javascript:;">

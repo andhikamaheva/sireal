@@ -17,7 +17,7 @@
                 <small>{{$pageDesc}}</small>
             </h3>
             <div class="page-bar">
-                {!! Breadcrumbs::render('semesters.index') !!}
+                {!! Breadcrumbs::render('interviews.index') !!}
             </div>
             <!-- END PAGE HEADER-->
             <!-- BEGIN PAGE CONTENT-->
@@ -29,11 +29,7 @@
                             <div class="table-toolbar">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="btn-group">
-                                            <a href="{{route('semesters.create')}}" class="btn green">
-                                                Add New <i class="fa fa-plus"></i>
-                                            </a>
-                                        </div>
+
                                     </div>
                                     <div class="col-md-6">
                                         <div class="btn-group pull-right">
@@ -65,50 +61,45 @@
                                         ID
                                     </th>
                                     <th>
+                                        NIM
+                                    </th>
+                                    <th>
                                         Name
                                     </th>
                                     <th>
-                                        Date Start
+                                        Register Date
                                     </th>
-                                    <th>
-                                        Date End
-                                    </th>
-                                    <th>
+                                   {{-- <th>
                                         Status
-                                    </th>
+                                    </th>--}}
                                     <th style="text-align:center;">
                                         Actions
                                     </th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($semesters as $semester)
+                                @foreach($oprecs as $oprec)
                                     <tr class="odd gradeX">
                                         <td>
-                                            {{$semester->id}}
+                                            {{$oprec->id}}
                                         </td>
                                         <td>
-                                            {{$semester->name}}
+                                            {{$oprec->students->nim}}
                                         </td>
                                         <td>
-                                            <?php setlocale(LC_TIME, 'id_ID.utf8'); ?>
-                                            {{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $semester->start_at)->formatLocalized('%d %B %Y')}}
+                                            {{$oprec->students->name}}
                                         </td>
                                         <td>
-                                            {{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $semester->end_at)->formatLocalized('%d %B %Y')}}
+                                            {{$oprec->created_at}}
                                         </td>
-                                        <td>
-                                            {{statusTable($semester->status)}}
-                                        </td>
+                                       {{-- <td>
+                                            {{statusScore($oprec->file->status)}}
+                                        </td>--}}
+
                                         <td align="center">
                                             <a class="btn green"
-                                               href="{{route('semesters.edit', ['id' => $semester->id])}}"><i
-                                                        class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-
-                                            <a class="btn red"
-                                               onclick="deleteSemester('{{$semester->id}}',' {{$semester->name}}')"><i
-                                                        class="fa fa-trash-o" aria-hidden="true"></i></a>
-
+                                               href="{{route('interviews.edit', ['id' => $oprec->id])}}"><i
+                                                        class="fa fa-search-plus" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach

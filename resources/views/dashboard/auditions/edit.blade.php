@@ -18,7 +18,7 @@
                 <small> {{$pageDesc}} </small>
             </h3>
             <div class="page-bar">
-                {!! Breadcrumbs::render('tpas.edit', $oprec->id) !!}
+                {!! Breadcrumbs::render('auditions.edit', $oprec->id) !!}
             </div>
             <!-- END PAGE HEADER-->
             <!-- BEGIN PAGE CONTENT-->
@@ -34,7 +34,7 @@
                                 <div class="portlet-body form">
 
                                     <form role="form" method="post"
-                                          action="{{route('tpas.update', ['id' => $oprec->id])}}"
+                                          action="{{route('auditions.update', ['id' => $oprec->id])}}"
                                           style="padding-top:10px;">
                                         <input type="hidden" name="_method" value="PATCH">
                                         @include('flash::message')
@@ -91,39 +91,101 @@
 
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label>Subjects</label>
-                                                        <div class="input-group">
-                                                            <ul>
-                                                                @foreach($oprec->selectedsubjects as $subject)
-                                                                    <li>{{$subject->name}}</li>
-                                                                @endforeach
-                                                            </ul>
+
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="row">
+                                                        <div class="col-md-5">
+                                                            <div class="form-group">
+                                                                <label>Skill</label>
+                                                                <div class="input-group input-icon right">
+											<span class="input-group-addon">
+
+											</span>
+                                                                    <i class="fa fa-question-circle tooltips"
+                                                                       data-original-title="Peluang nih buat Mobile Developer. Kalau di Google Playstore kan sudah banyak pemain yg sulit dikalahkan dengan ribuan bahkan jutaan download. Ketika kita masuk dengan aplikasi baru yg masih cupu kita akan berhadapan dengan jutaan app yg sudah sangat kokoh posisinya, pastinya akan berdarah-darah."
+                                                                       data-container="body"></i>
+                                                                    <input name="skill" class="input-error form-control"
+                                                                           type="text" value="{{$scores->auditionscores[0]->skill or ''}}">
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-5">
+                                                            <div class="form-group">
+                                                                <label>Appearance</label>
+                                                                <div class="input-group input-icon right">
+											<span class="input-group-addon">
+
+											</span>
+                                                                    <i class="fa fa-question-circle tooltips"
+                                                                       data-original-title="Peluang nih buat Mobile Developer. Kalau di Google Playstore kan sudah banyak pemain yg sulit dikalahkan dengan ribuan bahkan jutaan download. Ketika kita masuk dengan aplikasi baru yg masih cupu kita akan berhadapan dengan jutaan app yg sudah sangat kokoh posisinya, pastinya akan berdarah-darah."
+                                                                       data-container="body"></i>
+                                                                    <input name="appearance"
+                                                                           class="input-error form-control"
+                                                                           type="text" value="{{$scores->auditionscores[0]->appearance or ''}}">
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-5">
+                                                            <div class="form-group">
+                                                                <label>Communication</label>
+                                                                <div class="input-group input-icon right">
+											<span class="input-group-addon">
+
+											</span>
+                                                                    <i class="fa fa-question-circle tooltips"
+                                                                       data-original-title="Peluang nih buat Mobile Developer. Kalau di Google Playstore kan sudah banyak pemain yg sulit dikalahkan dengan ribuan bahkan jutaan download. Ketika kita masuk dengan aplikasi baru yg masih cupu kita akan berhadapan dengan jutaan app yg sudah sangat kokoh posisinya, pastinya akan berdarah-darah."
+                                                                       data-container="body"></i>
+                                                                    <input name="communication"
+                                                                           class="input-error form-control"
+                                                                           type="text" value="{{$scores->auditionscores[0]->communication or ''}}">
+                                                                </div>
+                                                            </div>
 
                                                         </div>
                                                     </div>
 
+                                                    <div class="row">
+                                                        <div class="col-md-5">
+                                                            <div class="form-group">
+                                                                <label>Improvisation</label>
+                                                                <div class="input-group input-icon right">
+											<span class="input-group-addon">
 
-                                                </div>
-                                                <div class="col-md-6">
-                                                    @foreach($subjects as $subject)
-                                                        <div class="form-group">
-                                                            <label>{{$subject->name}}</label>
-                                                            <div class="input-group">
-									<span class="input-group-addon">
-									</span>
-                                                                <input type="text" name="score[{{$subject->id}}]"
-                                                                       value="{{$subject->pivot->score}}"
-                                                                       class="form-control" placeholder="Score"
-                                                                       >
-
+											</span>
+                                                                    <i class="fa fa-question-circle tooltips"
+                                                                       data-original-title="Peluang nih buat Mobile Developer. Kalau di Google Playstore kan sudah banyak pemain yg sulit dikalahkan dengan ribuan bahkan jutaan download. Ketika kita masuk dengan aplikasi baru yg masih cupu kita akan berhadapan dengan jutaan app yg sudah sangat kokoh posisinya, pastinya akan berdarah-darah."
+                                                                       data-container="body"></i>
+                                                                    <input name="improvisation"
+                                                                           class="input-error form-control"
+                                                                           type="text" value="{{$scores->auditionscores[0]->improvisation or ''}}">
+                                                                </div>
                                                             </div>
+
                                                         </div>
-                                                    @endforeach
+                                                    </div>
 
-
-
+                                                   <div class="row">
+                                                       <div class="col-md-9">
+                                                           <div class="form-group">
+                                                               <label>Note</label>
+                                                               <div class="input-group">
+									<span class="input-group-addon ">
+									<i class="fa fa-question-circle" aria-hidden="true"></i>
+									</span>
+                                                                   <textarea type="text" name="note" value="" class="form-control" placeholder="Note">{{$scores->auditionscores[0]->note or ''}}</textarea>
+                                                               </div>
+                                                           </div>
+                                                           </div>
+                                                       </div>
                                                 </div>
+
                                             </div>
 
 

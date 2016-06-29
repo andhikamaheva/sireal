@@ -153,3 +153,28 @@ Breadcrumbs::register('auditions.edit', function ($breadcrumbs, $id) {
     $breadcrumbs->parent('dashboard');
     $breadcrumbs->push('Audition Scoring', route('auditions.edit', [ 'id' => $id ]));
 });
+
+// Dashboard > Interviews
+Breadcrumbs::register('interviews.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('dashboard');
+    $breadcrumbs->push('Interviews', route('interviews.index'));
+});
+
+// Dashboard > Audition Scoring
+Breadcrumbs::register('interviews.edit', function ($breadcrumbs, $id) {
+    $breadcrumbs->parent('dashboard');
+    $breadcrumbs->push('Interviews Scoring', route('interviews.edit', [ 'id' => $id ]));
+});
+
+
+// Dashboard > Audition Scoring
+Breadcrumbs::register('weights.edit', function ($breadcrumbs, $id) {
+    $breadcrumbs->parent('dashboard');
+    $breadcrumbs->push('Weighting', route('weights.edit', [ 'id' => $id ]));
+});
+
+// Dashboard > Reports
+Breadcrumbs::register('reports.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('dashboard');
+    $breadcrumbs->push('Reports', route('reports.index'));
+});

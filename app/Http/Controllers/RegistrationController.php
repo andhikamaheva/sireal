@@ -128,7 +128,7 @@ class RegistrationController extends Controller
                     $photo     = $filename;
                     $upload    = $request->file('photo')->move($destinationPath, $filename);
 
-                    $oprec->selectedsubject()->attach($data['subjects']);
+                    $oprec->selectedsubjects()->attach($data['subjects']);
 
                     $file             = new File();
                     $file->ktp        = $ktp;
