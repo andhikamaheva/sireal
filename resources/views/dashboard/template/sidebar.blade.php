@@ -120,7 +120,7 @@
                 <li class=" {{ Request::is('dashboard/reports/*') ||  Request::is('dashboard/reports') ? 'active open' : ''  }} ">
                     <a href="javascript:;">
                         <i class="fa fa-files-o" aria-hidden="true"></i>
-                        <span class="title">Report</span>
+                        <span class="title">Laporan</span>
                         <span class=" {{ Request::is('dashboard/reports/*') ||  Request::is('dashboard/reports') ? 'arrow open selected' : 'arrow'  }} "></span>
                     </a>
                     <ul class="sub-menu">
@@ -129,7 +129,7 @@
                         @if(Auth::user()->can('report'))
                             <li class="{{ Request::is('dashboard/scores/reports') || Request::is('dashboard/scores/reports/*') ? 'active' : '' }}">
                                 <a href="{{ route('reports.index')}}">
-                                    Final Report</a>
+                                    Laporan Akhir</a>
                             </li>
                         @endif
 
@@ -138,33 +138,6 @@
                 </li>
             @endif
 
-            {{-- @if(Auth::user()->can('view-batch'))
-                 <li class=" {{ Request::is('dashboard/batches/*') ||  Request::is('dashboard/batches') ? 'active open' : ''  }} ">
-                     <a href="javascript:;">
-                         <i class="fa fa-list-ol" aria-hidden="true"></i>
-                         <span class="title">Manage Oprec</span>
-                         <span class=" {{ Request::is('dashboard/batches/*') ||  Request::is('dashboard/batches') ? 'arrow open selected' : 'arrow'  }} "></span>
-                     </a>
-                     <ul class="sub-menu">
-
-                         <li class="{{ Request::is('dashboard/batches') ? 'active' : '' }}">
-                             <a href="{{ route('batches.index')}}">
-                                 List Batches</a>
-                         </li>
-
-                         @if(Auth::user()->can('add-batch'))
-                             <li class="{{ Request::is('dashboard/batches/create') ? 'active' : '' }}">
-                                 <a href="{{ route('batches.create')}}">
-                                     Add Batche</a>
-                             </li>
-                         @endif
-
-                     </ul>
-                 </li>
-             @endif
-
-
- --}}
             <li class="heading">
                 <h3 class="uppercase">Master</h3>
             </li>
@@ -173,20 +146,20 @@
                 <li class=" {{ Request::is('dashboard/semesters/*') ||  Request::is('dashboard/semesters') ? 'active open' : ''  }} ">
                     <a href="javascript:;">
                         <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                        <span class="title">Manage Semesters</span>
+                        <span class="title">Kelola Semester</span>
                         <span class=" {{ Request::is('dashboard/semesters/*') ||  Request::is('dashboard/semesters') ? 'arrow open selected' : 'arrow'  }} "></span>
                     </a>
                     <ul class="sub-menu">
 
                         <li class="{{ Request::is('dashboard/semesters') ? 'active' : '' }}">
                             <a href="{{ route('semesters.index')}}">
-                                List Semesters</a>
+                                Semua Semester</a>
                         </li>
 
                         @if(Auth::user()->can('add-semester'))
                             <li class="{{ Request::is('dashboard/semesters/create') ? 'active' : '' }}">
                                 <a href="{{ route('semesters.create')}}">
-                                    Add Semester</a>
+                                    Tambah Semester</a>
                             </li>
                         @endif
 
@@ -198,20 +171,20 @@
                 <li class=" {{ Request::is('dashboard/students/*') ||  Request::is('dashboard/students') ? 'active open' : ''  }} ">
                     <a href="javascript:;">
                         <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                        <span class="title">Manage Students</span>
+                        <span class="title">Kelola Mahasiswa</span>
                         <span class=" {{ Request::is('dashboard/students/*') ||  Request::is('dashboard/students') ? 'arrow open selected' : 'arrow'  }} "></span>
                     </a>
                     <ul class="sub-menu">
 
                         <li class="{{ Request::is('dashboard/students') ? 'active' : '' }}">
                             <a href="{{ route('students.index')}}">
-                                List Students</a>
+                                Semua Mahasiswa</a>
                         </li>
 
                         @if(Auth::user()->can('add-student'))
                             <li class="{{ Request::is('dashboard/students/create') ? 'active' : '' }}">
                                 <a href="{{ route('students.create')}}">
-                                    Add Student</a>
+                                    Tambah Mahasiswa</a>
                             </li>
                         @endif
 
@@ -224,20 +197,19 @@
                 <li class=" {{ Request::is('dashboard/subjects/*') ||  Request::is('dashboard/subjects') ? 'active open' : ''  }} ">
                     <a href="javascript:;">
                         <i class="fa fa-flask" aria-hidden="true"></i>
-                        <span class="title">Manage Subjects</span>
+                        <span class="title">Kelola Mata Praktikum</span>
                         <span class=" {{ Request::is('dashboard/subjects/*') ||  Request::is('dashboard/subjects') ? 'arrow open selected' : 'arrow'  }} "></span>
                     </a>
                     <ul class="sub-menu">
 
                         <li class="{{ Request::is('dashboard/subjects') ? 'active' : '' }}">
-                            <a href="{{ route('subjects.index')}}">
-                                List Subjects</a>
+                            <a href="{{ route('subjects.index')}}">Semua Mata Praktikum</a>
                         </li>
 
                         @if(Auth::user()->can('add-subject'))
                             <li class="{{ Request::is('dashboard/subjects/create') ? 'active' : '' }}">
                                 <a href="{{ route('subjects.create')}}">
-                                    Create Subject</a>
+                                    Tambah Mata Praktikum</a>
                             </li>
                         @endif
 
@@ -249,22 +221,20 @@
                 <li class=" {{ Request::is('dashboard/users/*') ||  Request::is('dashboard/users') || Request::is('dashboard/roles/*') ||  Request::is('dashboard/roles')  ? 'active open' : ''  }} ">
                     <a href="javascript:;">
                         <i class="icon-user"></i>
-                        <span class="title">Manage Users</span>
+                        <span class="title">Kelola Pengguna</span>
                         <span class=" {{ Request::is('dashboard/users/*') ||  Request::is('dashboard/users') || Request::is('dashboard/roles/*') ||  Request::is('dashboard/roles')  ? 'arrow open selected' : 'arrow'  }} "></span>
                     </a>
                     <ul class="sub-menu">
                         <li class="{{ Request::is('dashboard/users') ? 'active' : '' }}">
-                            <a href="{{ route('users.index')}}">
-                                List Users</a>
+                            <a href="{{ route('users.index')}}">Semua Pengguna</a>
                         </li>
                         <li class="{{ Request::is('dashboard/users/create') ? 'active' : '' }}">
-                            <a href="{{ route('users.create')}}">
-                                Create User</a>
+                            <a href="{{ route('users.create')}}">Tambah Pengguna</a>
                         </li>
                         @if(Auth::user()->can('view-role'))
                             <li class="{{ Request::is('dashboard/roles') ? 'active' : '' }}">
                                 <a href="{{ route('roles.index')}}">
-                                    Roles</a>
+                                    Hak Akses</a>
                             </li>
                         @endif
 
@@ -274,7 +244,7 @@
 
 
             <li class="heading">
-                <h3 class="uppercase">General</h3>
+                <h3 class="uppercase">Umum</h3>
             </li>
 
             @if(Auth::user()->can(''))
@@ -283,13 +253,13 @@
             <li class=" {{ Request::is('dashboard/settings/*') ||  Request::is('dashboard/settings')  ? 'active open' : ''  }} ">
                 <a href="javascript:;">
                     <i class="fa fa-cogs" aria-hidden="true"></i>
-                    <span class="title">Settings</span>
+                    <span class="title">Pengaturan</span>
                     <span class="{{ Request::is('dashboard/settings/*') ||  Request::is('dashboard/settings')  ? 'arrow open selected' : 'arrow'  }} "></span>
                 </a>
                 <ul class="sub-menu">
                     <li>
                         <a href="components_pickers.html">
-                            General</a>
+                            Umum</a>
                     </li>
                 </ul>
             </li>

@@ -141,18 +141,18 @@
 					<ul class="dropdown-menu dropdown-menu-default">
 						<li>
 							<a href="{{ route('users.edit', ['id' => Auth::user()->id]) }}">
-							<i class="icon-user"></i> My Profile </a>
+							<i class="icon-user"></i> Profil </a>
 						</li>
 						<li>
 							<a href="page_todo.html">
-							<i class="icon-settings"></i> Settings
+							<i class="icon-settings"></i> Pengaturan
 							</a>
 						</li>
 						<li class="divider">
 						</li>
 						<li>
 							<a href="{{ URL ('dashboard/logout')}}">
-							<i class="icon-key"></i> Log Out </a>
+							<i class="icon-key"></i> Keluar </a>
 						</li>
 					</ul>
 				</li>
