@@ -36,7 +36,7 @@
                 <li class=" {{ Request::is('dashboard/dashboard/scores*') ||  Request::is('dashboard/scores/*') ? 'active open' : ''  }} ">
                     <a href="javascript:;">
                         <i class="fa fa-sort-numeric-desc" aria-hidden="true"></i>
-                        <span class="title">Scoring</span>
+                        <span class="title">Penilaian</span>
                         <span class=" {{ Request::is('dashboard/dashboard/scores*') ||  Request::is('dashboard/scores/*') ? 'arrow open selected' : 'arrow'  }} "></span>
                     </a>
                     <ul class="sub-menu">
@@ -44,7 +44,7 @@
                         @if(Auth::user()->can('scores-administration'))
                             <li class="{{ Request::is('dashboard/dashboard/scores/administrations') ||  Request::is('dashboard/scores/administrations/*') ? 'active' : '' }}">
                                 <a href="{{ route('administrations.index')}}">
-                                    Administration</a>
+                                    Administrasi</a>
                             </li>
                         @endif
 
@@ -58,14 +58,14 @@
                         @if(Auth::user()->can('scores-audition'))
                             <li class="{{ Request::is('dashboard/scores/auditions') || Request::is('dashboard/scores/auditions/*') ? 'active' : '' }}">
                                 <a href="{{ route('auditions.index')}}">
-                                    Audition</a>
+                                    Audisi</a>
                             </li>
                         @endif
 
                         @if(Auth::user()->can('scores-interview'))
                             <li class="{{ Request::is('dashboard/scores/interviews') || Request::is('dashboard/scores/interviews/*') ? 'active' : '' }}">
                                 <a href="{{ route('interviews.index')}}">
-                                    Interview</a>
+                                    Wawancara</a>
                             </li>
                         @endif
 
@@ -80,20 +80,20 @@
                 <li class=" {{ Request::is('dashboard/batches/*') ||  Request::is('dashboard/batches') ? 'active open' : ''  }} ">
                     <a href="javascript:;">
                         <i class="fa fa-list-ol" aria-hidden="true"></i>
-                        <span class="title">Manage Batches</span>
+                        <span class="title">Kelola Gelombang</span>
                         <span class=" {{ Request::is('dashboard/batches/*') ||  Request::is('dashboard/batches') ? 'arrow open selected' : 'arrow'  }} "></span>
                     </a>
                     <ul class="sub-menu">
 
                         <li class="{{ Request::is('dashboard/batches') ? 'active' : '' }}">
                             <a href="{{ route('batches.index')}}">
-                                List Batches</a>
+                                Semua Gelombang</a>
                         </li>
 
                         @if(Auth::user()->can('add-batch'))
                             <li class="{{ Request::is('dashboard/batches/create') ? 'active' : '' }}">
                                 <a href="{{ route('batches.create')}}">
-                                    Add Batche</a>
+                                    Tambah Gelombang</a>
                             </li>
                         @endif
 
