@@ -4,10 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/resources/views/dashboard/semesters/index.blade.php" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6ea9e1ed-474b-4662-a7cb-bdb118a9e5c3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/dashboard/template/header.blade.php" afterPath="$PROJECT_DIR$/resources/views/dashboard/template/header.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/dashboard/template/sidebar.blade.php" afterPath="$PROJECT_DIR$/resources/views/dashboard/template/sidebar.blade.php" />
-    </list>
+    <list default="true" id="6ea9e1ed-474b-4662-a7cb-bdb118a9e5c3" name="Default" comment="" />
     <ignored path="sireal.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -147,9 +144,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="y" value="24" />
+    <option name="y" value="52" />
     <option name="width" value="1366" />
-    <option name="height" value="744" />
+    <option name="height" value="716" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -364,16 +361,16 @@
       <workItem from="1467079773480" duration="37810000" />
       <workItem from="1467160301050" duration="1877000" />
       <workItem from="1469459183316" duration="10000" />
-      <workItem from="1469497176183" duration="8899000" />
+      <workItem from="1469497176183" duration="8942000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="144535000" />
+    <option name="totallyTimeSpent" value="144578000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="24" width="1366" height="744" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="52" width="1366" height="716" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25841874" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
